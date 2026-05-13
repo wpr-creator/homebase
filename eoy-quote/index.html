@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>End of Year Quote — O'Farrell Homebase</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #1B2F6E;
+    --navy-dark: #111e4a;
+    --navy-mid: #2a4494;
+    --gold: #E8A820;
+    --gold-light: #fdf3d8;
+    --gold-mid: #f5d483;
+    --red: #C41E3A;
+    --red-light: #fbeaed;
+    --teal: #1D9E75;
+    --teal-light: #E1F5EE;
+    --teal-mid: #9FE1CB;
+    --white: #ffffff;
+    --off-white: #f7f8fc;
+    --text: #1B2F6E;
+    --text-muted: #6b7a9e;
+    --border: rgba(27,47,110,0.10);
+    --radius: 18px;
+    --radius-sm: 10px;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--off-white);
+    min-height: 100vh;
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* bg blobs */
+  .bg-gradient {
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 0% 0%, rgba(232,168,32,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 100% 100%, rgba(27,47,110,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 80%, rgba(196,30,58,0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    background: var(--navy-dark);
+    padding: 10px 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .topbar img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    filter: drop-shadow(0 1px 4px rgba(232,168,32,0.4));
+  }
+
+  .topbar-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .topbar-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .topbar-sub {
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+  }
+
+  .topbar-back {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 600;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+  }
+
+  .topbar-back:hover { opacity: 1; }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .page-header .eyebrow {
+    display: inline-block;
+    background: var(--gold-light);
+    color: var(--navy);
+    border: 1px solid rgba(232,168,32,0.4);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 0.75rem;
+  }
+
+  .page-header h1 {
+    font-size: clamp(1.7rem, 5vw, 2.5rem);
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1.15;
+  }
+
+  .page-header h1 span { color: var(--gold); }
+
+  .page-header p {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-top: 0.4rem;
+  }
+
+  /* ── PROGRESS ── */
+  .progress-wrap { margin-bottom: 2rem; }
+
+  .progress-steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .step-dot {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+    transition: all 0.3s;
+    flex-shrink: 0;
+    z-index: 2;
+  }
+
+  .step-dot.active { background: var(--navy); border-color: var(--navy); color: white; }
+  .step-dot.done   { background: var(--gold); border-color: var(--gold); color: var(--navy-dark); }
+
+  .step-line {
+    flex: 1;
+    height: 2px;
+    background: var(--border);
+    max-width: 80px;
+    transition: background 0.3s;
+  }
+
+  .step-line.done { background: var(--gold); }
+
+  .step-labels {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 4px 0;
+  }
+
+  .step-label {
+    font-size: 10px;
+    color: var(--text-muted);
+    font-weight: 500;
+    text-align: center;
+    width: 32px;
+    transition: color 0.3s;
+  }
+
+  .step-label.active, .step-label.done { color: var(--navy); font-weight: 700; }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--white);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    margin-bottom: 1.25rem;
+    animation: fadeUp 0.3s ease;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .card-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .icon-gold   { background: var(--gold-light); }
+  .icon-navy   { background: rgba(27,47,110,0.08); }
+  .icon-red    { background: var(--red-light); }
+  .icon-teal   { background: var(--teal-light); }
+
+  .card-header-text h2 { font-size: 18px; font-weight: 700; color: var(--navy); }
+  .card-header-text p  { font-size: 14px; color: var(--text-muted); margin-top: 3px; line-height: 1.5; }
+
+  /* ── FORM ── */
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+
+  input[type="text"],
+  textarea,
+  select {
+    width: 100%;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--navy);
+    background: var(--off-white);
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    outline: none;
+    resize: vertical;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231B2F6E' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+    cursor: pointer;
+  }
+
+  input[type="text"]:focus,
+  textarea:focus,
+  select:focus {
+    border-color: var(--navy);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(27,47,110,0.08);
+  }
+
+  textarea { min-height: 110px; line-height: 1.6; }
+  .form-row { margin-bottom: 1.25rem; }
+  .char-hint { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+  /* ── CHIPS ── */
+  .chip-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+
+  .chip {
+    padding: 6px 14px;
+    border-radius: 100px;
+    border: 1.5px solid var(--border);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    background: white;
+    color: var(--text-muted);
+    transition: all 0.18s;
+    user-select: none;
+  }
+
+  .chip:hover { border-color: var(--navy); color: var(--navy); }
+  .chip.selected { background: var(--navy); border-color: var(--navy); color: white; }
+
+  /* ── REFLECT ITEMS ── */
+  .reflect-list { display: grid; gap: 8px; margin-bottom: 1.5rem; }
+
+  .reflect-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: var(--gold-light);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    color: #7a5200;
+    font-weight: 500;
+  }
+
+  .reflect-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* ── EXAMPLES ── */
+  .example-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 1rem 0; }
+
+  .example-col h4 {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .example-col.funny h4    { color: var(--red); }
+  .example-col.thoughtful h4 { color: var(--navy); }
+
+  .example-bubble {
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 8px 12px;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    font-family: 'Lora', serif;
+  }
+
+  /* ── QUOTE PREVIEW ── */
+  .quote-preview {
+    background: var(--gold-light);
+    border: 1.5px solid var(--gold-mid);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-top: 1rem;
+    text-align: center;
+    display: none;
+  }
+
+  .quote-preview .q-text {
+    font-family: 'Lora', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: var(--navy);
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+
+  .quote-preview .q-name {
+    font-size: 13px;
+    color: var(--navy-mid);
+    font-weight: 600;
+  }
+
+  /* ── LETTER PROMPTS ── */
+  .letter-prompts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 1.25rem;
+  }
+
+  .letter-prompt {
+    background: rgba(27,47,110,0.05);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    font-size: 13px;
+    color: var(--navy);
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  /* ── NO PRESSURE ── */
+  .no-pressure {
+    background: var(--gold-light);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    border-left: 3px solid var(--gold);
+  }
+
+  .no-pressure span { font-size: 18px; flex-shrink: 0; }
+  .no-pressure p { font-size: 13px; color: #7a5200; font-weight: 500; line-height: 1.5; }
+  .no-pressure strong { color: var(--navy); }
+
+  /* ── BUTTONS ── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 24px;
+    border-radius: 100px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    text-decoration: none;
+  }
+
+  .btn-navy {
+    background: var(--navy);
+    color: white;
+  }
+  .btn-navy:hover { background: var(--navy-mid); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(27,47,110,0.25); }
+
+  .btn-gold {
+    background: var(--gold);
+    color: var(--navy-dark);
+    font-weight: 700;
+  }
+  .btn-gold:hover { background: #d49a18; transform: translateY(-1px); box-shadow: 0 4px 14px rgba(232,168,32,0.35); }
+
+  .btn-secondary {
+    background: white;
+    color: var(--text-muted);
+    border: 1.5px solid var(--border);
+  }
+  .btn-secondary:hover { border-color: var(--navy); color: var(--navy); }
+
+  .btn-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    gap: 12px;
+  }
+
+  /* ── ERROR ── */
+  .error-msg {
+    background: var(--red-light);
+    color: var(--red);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 8px;
+    display: none;
+    border-left: 3px solid var(--red);
+  }
+  .error-msg.show { display: block; }
+
+  /* ── SUCCESS ── */
+  .success-card {
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+
+  .success-emoji { font-size: 56px; margin-bottom: 1rem; display: block; }
+
+  .success-card h2 { font-size: 26px; font-weight: 800; color: var(--navy); margin-bottom: 0.5rem; }
+
+  .success-card p { color: var(--text-muted); font-size: 15px; line-height: 1.6; max-width: 400px; margin: 0 auto 1.5rem; }
+
+  .quote-final-display {
+    background: var(--gold-light);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-left: 4px solid var(--gold);
+    text-align: left;
+  }
+
+  .qf-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--navy); margin-bottom: 6px; }
+  .qf-text { font-family: 'Lora', serif; font-size: 18px; font-style: italic; color: var(--navy); line-height: 1.5; }
+
+  /* ── TEACHER DASHBOARD ── */
+  .teacher-banner {
+    background: var(--navy-dark);
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .teacher-banner span { color: var(--gold); }
+
+  .teacher-table-wrap { overflow-x: auto; margin-top: 1rem; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+
+  th {
+    background: var(--navy);
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+  tr:nth-child(even) td { background: var(--off-white); }
+  tr:hover td { background: var(--gold-light); }
+
+  .teacher-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+
+  .empty-state { text-align: center; padding: 3rem; color: var(--text-muted); }
+  .empty-state span { font-size: 40px; display: block; margin-bottom: 1rem; }
+
+  /* screens */
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  @media (max-width: 520px) {
+    .example-grid { grid-template-columns: 1fr; }
+    .letter-prompts { grid-template-columns: 1fr; }
+    .card { padding: 1.25rem; }
+    .btn-row { flex-direction: column-reverse; }
+    .btn-row .btn { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-gradient"></div>
+
+<!-- TOP BAR -->
+<nav class="topbar">
+  <img src="../OFarrell-District-Logo.png" alt="O'Farrell logo">
+  <div class="topbar-text">
+    <span class="topbar-title">O'Farrell Homebase</span>
+    <span class="topbar-sub">End of Year Quote Project</span>
+  </div>
+  <a class="topbar-back" href="../">← Home</a>
+</nav>
+
+<!-- Teacher Banner -->
+<div id="teacherBanner" style="display:none" class="teacher-banner">
+  🎓 <span>Teacher Dashboard</span> — all student submissions
+</div>
+
+<!-- STUDENT APP -->
+<div id="mainApp">
+<div class="container">
+
+  <div class="page-header">
+    <div class="eyebrow">Homebase · Week of May 11</div>
+    <h1>The <span>"End of Year Quote"</span> Project</h1>
+    <p>Tuesday + Thursday this week</p>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-steps">
+      <div class="step-dot active" id="dot1">1</div>
+      <div class="step-line" id="line1"></div>
+      <div class="step-dot" id="dot2">2</div>
+      <div class="step-line" id="line2"></div>
+      <div class="step-dot" id="dot3">3</div>
+      <div class="step-line" id="line3"></div>
+      <div class="step-dot" id="dot4">4</div>
+      <div class="step-line" id="line4"></div>
+      <div class="step-dot" id="dot5">✓</div>
+    </div>
+    <div class="step-labels">
+      <div class="step-label active" id="label1">You</div>
+      <div class="step-label" style="width:80px"></div>
+      <div class="step-label" id="label2">Reflect</div>
+      <div class="step-label" style="width:80px"></div>
+      <div class="step-label" id="label3">Quote</div>
+      <div class="step-label" style="width:80px"></div>
+      <div class="step-label" id="label4">Letter</div>
+      <div class="step-label" style="width:80px"></div>
+      <div class="step-label" id="label5">Done</div>
+    </div>
+  </div>
+
+  <!-- SCREEN 1 -->
+  <div class="screen active" id="screen1">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-gold">👋</div>
+        <div class="card-header-text">
+          <h2>Welcome! Who are you?</h2>
+          <p>Select your name from the list below to get started.</p>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="studentName">Your Name</label>
+        <select id="studentName" onchange="onNameChange()">
+          <option value="">— Select your name —</option>
+          <option>Adrian Cruz</option>
+          <option>Agustin Roman</option>
+          <option>Aleana Retener</option>
+          <option>Amin Duale</option>
+          <option>Annika Lamanero</option>
+          <option>Bryan Cordero Uriarte</option>
+          <option>Christian Lopez</option>
+          <option>Clarissa Carrillo</option>
+          <option>Darla Ayala Guerrero</option>
+          <option>Daylin Lopez Contreras</option>
+          <option>Eliana Senethachith</option>
+          <option>Ian Garcia</option>
+          <option>Jack Vo</option>
+          <option>Jackson Kelly</option>
+          <option>Jacob Santos</option>
+          <option>Jonah Bumbasi</option>
+          <option>Kaiulani Alvarez</option>
+          <option>Mariajose Mendoza Noriega</option>
+          <option>Philip Tabares</option>
+          <option>Rafael Roque</option>
+          <option>Raphael Castro</option>
+          <option>Rodric Halabaso</option>
+          <option>Samantha Zamorano</option>
+          <option>Sophia Villanueva</option>
+          <option>Viviana Garcia</option>
+          <option>Yvan Quintanar Aguilar</option>
+          <option>Zoe Nelson</option>
+        </select>
+      </div>
+
+      <div class="error-msg" id="err1">Please select your name to continue.</div>
+      <div class="btn-row" style="justify-content:flex-end">
+        <button class="btn btn-navy" onclick="goTo(2)">Let's go →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 2 -->
+  <div class="screen" id="screen2">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-gold">🧠</div>
+        <div class="card-header-text">
+          <h2>Reflect on Your Year</h2>
+          <p>Think back before you write. No right answers here.</p>
+        </div>
+      </div>
+
+      <div class="no-pressure">
+        <span>💛</span>
+        <p><strong>No Pressure!</strong> There are no "right" answers. This is about your unique perspective and your individual journey.</p>
+      </div>
+
+      <div class="reflect-list">
+        <div class="reflect-item"><div class="reflect-dot"></div>A moment you're proud of</div>
+        <div class="reflect-item"><div class="reflect-dot"></div>A challenge you overcame</div>
+        <div class="reflect-item"><div class="reflect-dot"></div>Something funny that happened</div>
+        <div class="reflect-item"><div class="reflect-dot"></div>A lesson you learned</div>
+        <div class="reflect-item"><div class="reflect-dot"></div>A person who helped you</div>
+        <div class="reflect-item"><div class="reflect-dot"></div>A goal you still have this year</div>
+      </div>
+
+      <div class="form-row">
+        <label for="reflectText">What stands out most from your year? (Write freely — this is just for you to think with.)</label>
+        <textarea id="reflectText" placeholder="I'm proud of... I struggled with... The funniest moment was... I learned that..."></textarea>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="goTo(1)">← Back</button>
+        <button class="btn btn-navy" onclick="goTo(3)">Next: Create Your Quote →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 3 -->
+  <div class="screen" id="screen3">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-red">✍️</div>
+        <div class="card-header-text">
+          <h2>Create Your Quote</h2>
+          <p>A short statement that represents your personality, mindset, humor, or experience.</p>
+        </div>
+      </div>
+
+      <p style="font-size:13px; color:var(--text-muted); margin-bottom:12px">Need inspiration? Here are some examples:</p>
+      <div class="example-grid">
+        <div class="example-col funny">
+          <h4>Funny &amp; Relatable</h4>
+          <div class="example-bubble">"Locked in… eventually."</div>
+          <div class="example-bubble">"Running on caffeine and hope."</div>
+          <div class="example-bubble">"Mentally on summer break."</div>
+        </div>
+        <div class="example-col thoughtful">
+          <h4>Thoughtful</h4>
+          <div class="example-bubble">"Progress over perfection."</div>
+          <div class="example-bubble">"Growth takes time."</div>
+          <div class="example-bubble">"Small steps still count."</div>
+        </div>
+      </div>
+
+      <div class="form-row" style="margin-top:1.25rem">
+        <label>What kind of quote fits you best?</label>
+        <div class="chip-group">
+          <div class="chip" onclick="selectChip(this)">Funny</div>
+          <div class="chip" onclick="selectChip(this)">Serious</div>
+          <div class="chip" onclick="selectChip(this)">Motivational</div>
+          <div class="chip" onclick="selectChip(this)">Sarcastic</div>
+          <div class="chip" onclick="selectChip(this)">Thoughtful</div>
+          <div class="chip" onclick="selectChip(this)">Meme-inspired</div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="quoteText">Your Quote, Motto, or Message</label>
+        <input type="text" id="quoteText" placeholder="Write your quote here..." oninput="updatePreview()">
+        <div class="char-hint">Keep it short and memorable — 1–2 sentences max.</div>
+      </div>
+
+      <div class="form-row">
+        <label for="quoteExplain">Explain it: Why this quote? How does it connect to your year?</label>
+        <textarea id="quoteExplain" placeholder="I chose this quote because..."></textarea>
+      </div>
+
+      <div class="quote-preview" id="quotePreview">
+        <div class="q-text" id="previewText"></div>
+        <div class="q-name" id="previewName"></div>
+      </div>
+
+      <div class="error-msg" id="err3">Please write your quote and explanation before continuing.</div>
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="goTo(2)">← Back</button>
+        <button class="btn btn-gold" onclick="goTo(4)">Next: Letter to Future Me →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 4 -->
+  <div class="screen" id="screen4">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-navy">✉️</div>
+        <div class="card-header-text">
+          <h2>Letter to Future Me</h2>
+          <p><em>"Who will you be a year from now?"</em></p>
+        </div>
+      </div>
+
+      <div class="no-pressure" style="border-left-color: var(--red); background: var(--red-light);">
+        <span>🔒</span>
+        <p style="color:#7a1525"><strong style="color:var(--red)">100% Private</strong> — Your teacher will only see that you completed this, not what you wrote.</p>
+      </div>
+
+      <p style="font-size:13px; color:var(--text-muted); margin-bottom:10px; font-weight:600">Think about these prompts:</p>
+      <div class="letter-prompts">
+        <div class="letter-prompt">💭 What do you hope next year looks like?</div>
+        <div class="letter-prompt">📌 What do you want to remember?</div>
+        <div class="letter-prompt">🧭 What advice do you need later?</div>
+        <div class="letter-prompt">🌱 Who do you want to become?</div>
+      </div>
+
+      <div class="form-row">
+        <label for="letterText">Dear Future Me,</label>
+        <textarea id="letterText" style="min-height:180px" placeholder="Start writing to yourself here..."></textarea>
+      </div>
+
+      <div class="error-msg" id="err4">Please write at least a few sentences before submitting.</div>
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="goTo(3)">← Back</button>
+        <button class="btn btn-navy" onclick="submitAll()">Submit My Work ✓</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 5 -->
+  <div class="screen" id="screen5">
+    <div class="card success-card">
+      <span class="success-emoji">🎉</span>
+      <h2>You Did It!</h2>
+      <p>Your End of Year Quote has been saved. Be proud of the work you put into this year.</p>
+
+      <div class="quote-final-display">
+        <div class="qf-label">Your Quote</div>
+        <div class="qf-text" id="finalQuoteDisplay"></div>
+      </div>
+
+      <p style="font-size:13px; color:var(--text-muted); margin-bottom:1.5rem">
+        Get ready for the <strong>Gallery Walk</strong> on Thursday — read classmates' quotes, leave positive comments, and vote on your favorites!
+      </p>
+
+      <button class="btn btn-secondary" onclick="startOver()">Submit another response</button>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- TEACHER DASHBOARD -->
+<div id="teacherApp" style="display:none">
+<div class="container">
+
+  <div class="page-header">
+    <div class="eyebrow">Teacher View</div>
+    <h1>Student <span>Submissions</span></h1>
+    <p>End of Year Quote Project — Homebase</p>
+  </div>
+
+  <div class="teacher-actions">
+    <button class="btn btn-navy" onclick="downloadCSV()">⬇ Download CSV</button>
+    <button class="btn btn-secondary" onclick="clearAll()">🗑 Clear All Data</button>
+    <a class="btn btn-secondary" href="./">← Student View</a>
+  </div>
+
+  <div class="card">
+    <div id="teacherContent"></div>
+  </div>
+
+</div>
+</div>
+
+<script>
+  const STORAGE_KEY = 'ofarrell_eoy_quotes';
+  let currentStep = 1;
+  let selectedQuoteType = '';
+
+  const params = new URLSearchParams(window.location.search);
+  const isTeacher = params.get('teacher') === 'true';
+
+  if (isTeacher) {
+    document.getElementById('mainApp').style.display = 'none';
+    document.getElementById('teacherApp').style.display = 'block';
+    document.getElementById('teacherBanner').style.display = 'block';
+    renderTeacherDashboard();
+  }
+
+  function getSubmissions() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+    catch { return []; }
+  }
+
+  function onNameChange() {
+    updatePreview();
+  }
+
+  function selectChip(el) {
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedQuoteType = el.textContent;
+  }
+
+  function updatePreview() {
+    const q = document.getElementById('quoteText').value.trim();
+    const name = document.getElementById('studentName').value;
+    const preview = document.getElementById('quotePreview');
+    if (q.length > 2) {
+      preview.style.display = 'block';
+      document.getElementById('previewText').textContent = '\u201c' + q + '\u201d';
+      document.getElementById('previewName').textContent = name ? '— ' + name : '';
+    } else {
+      preview.style.display = 'none';
+    }
+  }
+
+  function goTo(step) {
+    if (step === 2) {
+      const name = document.getElementById('studentName').value;
+      if (!name) { document.getElementById('err1').classList.add('show'); return; }
+      document.getElementById('err1').classList.remove('show');
+    }
+
+    if (step === 4) {
+      const q = document.getElementById('quoteText').value.trim();
+      const e = document.getElementById('quoteExplain').value.trim();
+      if (!q || !e) { document.getElementById('err3').classList.add('show'); return; }
+      document.getElementById('err3').classList.remove('show');
+    }
+
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('screen' + step).classList.add('active');
+    currentStep = step;
+    updateProgress(step);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function updateProgress(step) {
+    for (let i = 1; i <= 5; i++) {
+      const dot = document.getElementById('dot' + i);
+      const label = document.getElementById('label' + i);
+      if (!dot) continue;
+      dot.className = 'step-dot';
+      if (label) label.className = 'step-label';
+      if (i < step)      { dot.classList.add('done'); dot.textContent = '✓'; if(label) label.classList.add('done'); }
+      else if (i === step){ dot.classList.add('active'); dot.textContent = i === 5 ? '✓' : i; if(label) label.classList.add('active'); }
+      else                { dot.textContent = i === 5 ? '✓' : i; }
+    }
+    for (let i = 1; i <= 4; i++) {
+      const line = document.getElementById('line' + i);
+      if (line) line.className = 'step-line' + (i < step ? ' done' : '');
+    }
+  }
+
+  function submitAll() {
+    const letter = document.getElementById('letterText').value.trim();
+    if (letter.length < 20) { document.getElementById('err4').classList.add('show'); return; }
+    document.getElementById('err4').classList.remove('show');
+
+    const entry = {
+      id: Date.now(),
+      timestamp: new Date().toLocaleString(),
+      name: document.getElementById('studentName').value,
+      reflection: document.getElementById('reflectText').value.trim(),
+      quoteType: selectedQuoteType,
+      quote: document.getElementById('quoteText').value.trim(),
+      explanation: document.getElementById('quoteExplain').value.trim(),
+      letterCompleted: true
+    };
+
+    const all = getSubmissions();
+    all.push(entry);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(all));
+
+    document.getElementById('finalQuoteDisplay').textContent = '\u201c' + entry.quote + '\u201d';
+    goTo(5);
+  }
+
+  function startOver() {
+    document.getElementById('studentName').value = '';
+    document.getElementById('reflectText').value = '';
+    document.getElementById('quoteText').value = '';
+    document.getElementById('quoteExplain').value = '';
+    document.getElementById('letterText').value = '';
+    selectedQuoteType = '';
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+    document.getElementById('quotePreview').style.display = 'none';
+    goTo(1);
+  }
+
+  function renderTeacherDashboard() {
+    const subs = getSubmissions();
+    const el = document.getElementById('teacherContent');
+    if (subs.length === 0) {
+      el.innerHTML = '<div class="empty-state"><span>📭</span><p>No submissions yet. Share the student link with your class!</p></div>';
+      return;
+    }
+
+    let html = '<p style="font-size:14px; color:var(--text-muted); margin-bottom:1rem"><strong>' + subs.length + '</strong> submission' + (subs.length !== 1 ? 's' : '') + ' total</p>';
+    html += '<div class="teacher-table-wrap"><table>';
+    html += '<thead><tr><th>#</th><th>Name</th><th>Quote</th><th>Type</th><th>Explanation</th><th>Letter</th><th>Submitted</th></tr></thead><tbody>';
+
+    subs.forEach((s, i) => {
+      html += '<tr>';
+      html += '<td>' + (i+1) + '</td>';
+      html += '<td><strong>' + esc(s.name) + '</strong></td>';
+      html += '<td style="font-style:italic; max-width:180px">\u201c' + esc(s.quote) + '\u201d</td>';
+      html += '<td>' + esc(s.quoteType || '—') + '</td>';
+      html += '<td style="max-width:200px; font-size:13px">' + esc(s.explanation) + '</td>';
+      html += '<td style="text-align:center">' + (s.letterCompleted ? '✅' : '—') + '</td>';
+      html += '<td style="font-size:12px; color:var(--text-muted); white-space:nowrap">' + esc(s.timestamp) + '</td>';
+      html += '</tr>';
+    });
+
+    html += '</tbody></table></div>';
+    el.innerHTML = html;
+  }
+
+  function esc(str) {
+    if (!str) return '';
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function downloadCSV() {
+    const subs = getSubmissions();
+    if (!subs.length) { alert('No submissions to download yet.'); return; }
+    const headers = ['#','Name','Quote Type','Quote','Explanation','Letter Completed','Submitted'];
+    const rows = subs.map((s, i) => [
+      i+1, s.name, s.quoteType||'', s.quote, s.explanation,
+      s.letterCompleted ? 'Yes' : 'No', s.timestamp
+    ].map(v => '"' + String(v||'').replace(/"/g,'""') + '"').join(','));
+    const csv = [headers.join(','), ...rows].join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'homebase_eoy_quotes_' + new Date().toISOString().slice(0,10) + '.csv';
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function clearAll() {
+    if (confirm('Clear ALL student submissions? This cannot be undone.')) {
+      localStorage.removeItem(STORAGE_KEY);
+      renderTeacherDashboard();
+    }
+  }
+</script>
+</body>
+</html>
