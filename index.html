@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MR. ROGERS' HOMEBASE</title>
-<meta name="description" content="Mr. Rogers' Homebase hub for Monday AVID checks and Friday grade checks.">
+<meta name="description" content="Mr. Rogers' Homebase for weekly check-ins and activities.">
 <link rel="canonical" href="https://wpr-creator.github.io/homebase/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Mr. Rogers' Homebase">
 <meta property="og:title" content="Mr. Rogers' Homebase">
-<meta property="og:description" content="Monday AVID checks and Friday grade checks for Mr. Rogers' Homebase.">
+<meta property="og:description" content="Mr. Rogers' Homebase for weekly check-ins and activities.">
 <meta property="og:url" content="https://wpr-creator.github.io/homebase/">
 <meta property="og:image" content="https://wpr-creator.github.io/homebase/social-preview.png?v=2">
 <meta property="og:image:width" content="1200">
@@ -17,7 +17,7 @@
 <meta property="og:image:alt" content="Mr. Rogers' Homebase">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Mr. Rogers' Homebase">
-<meta name="twitter:description" content="Monday AVID checks and Friday grade checks for Mr. Rogers' Homebase.">
+<meta name="twitter:description" content="Mr. Rogers' Homebase for weekly check-ins and activities.">
 <meta name="twitter:image" content="https://wpr-creator.github.io/homebase/social-preview.png?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -71,54 +71,18 @@ body::before {
 .hero {
   position: relative;
   z-index: 1;
-  min-height: 62vh;
+  min-height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 5rem 2rem 3rem;
-}
-
-.top-rule {
-  position: absolute;
-  top: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  white-space: nowrap;
-}
-.top-rule::before, .top-rule::after {
-  content: '';
-  width: 48px;
-  height: 1px;
-  background: var(--red-bright);
-  opacity: 0.5;
-}
-.top-rule span {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.eyebrow {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 1.25rem;
-  opacity: 0;
-  animation: up 0.7s 0.2s ease forwards;
+  padding: 3rem 2rem 1.5rem;
 }
 
 h1 {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(3.2rem, 11vw, 8rem);
+  font-size: clamp(3rem, 9vw, 6.5rem);
   font-weight: 900;
   line-height: 0.9;
   letter-spacing: -0.01em;
@@ -133,89 +97,7 @@ h1 em {
   color: var(--gold-light);
   font-size: 0.75em;
 }
-
-.divider {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin: 2.25rem auto;
-  width: 260px;
-  opacity: 0;
-  animation: up 0.6s 0.5s ease forwards;
-}
-.divider::before, .divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--border-gold);
-}
-.gem {
-  width: 7px; height: 7px;
-  background: var(--gold);
-  transform: rotate(45deg);
-  flex-shrink: 0;
-}
-
-.sub {
-  font-size: 14px;
-  font-weight: 300;
-  color: var(--muted);
-  letter-spacing: 0.06em;
-  opacity: 0;
-  animation: up 0.6s 0.62s ease forwards;
-}
-
-.scroll-hint {
-  display: none;
-  position: absolute;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  opacity: 0;
-  animation: up 0.6s 1s ease forwards;
-}
-.scroll-hint span {
-  font-size: 9px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.scroll-line {
-  width: 1px;
-  height: 32px;
-  background: linear-gradient(to bottom, var(--gold), transparent);
-  animation: pulse 2.2s infinite;
-}
-@keyframes pulse { 0%,100%{opacity:0.25} 50%{opacity:1} }
 @keyframes up { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
-
-/* STRIP */
-.strip {
-  position: relative;
-  z-index: 1;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 1.5rem 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-  background: rgba(13,27,62,0.7);
-  backdrop-filter: blur(10px);
-}
-.strip-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 11px;
-  font-weight: 400;
-  color: var(--muted);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-.strip-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
-.strip-sep { width: 1px; height: 14px; background: var(--border); }
 
 /* SECTION */
 .section {
@@ -223,28 +105,13 @@ h1 em {
   z-index: 1;
   max-width: 1080px;
   margin: 0 auto;
-  padding: 3rem 2rem 5rem;
+  padding: 1.25rem 2rem 4rem;
 }
-.sec-head {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  margin-bottom: 2.75rem;
-}
-.sec-label {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gold);
-  white-space: nowrap;
-}
-.sec-rule { flex: 1; height: 1px; background: var(--border); }
 
 /* CARDS */
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 0;
   border: 1px solid var(--border);
   overflow: hidden;
@@ -278,7 +145,11 @@ h1 em {
 .acard:hover { background: var(--navy-3); }
 .acard:hover::after { transform: scaleX(1); }
 
-.acard.off { opacity: 0.28; cursor: default; pointer-events: none; }
+.acard.placeholder { cursor: default; }
+.acard.placeholder:hover { background: var(--navy-2); }
+.acard.placeholder:hover::after { transform: scaleX(0); }
+.acard.placeholder .acard-cta { color: var(--muted); }
+.acard.placeholder .cta-line { background: var(--muted); }
 
 .acard-num {
   font-family: 'Playfair Display', serif;
@@ -365,8 +236,6 @@ footer {
   .grid { grid-template-columns: 1fr; }
   .acard { border-right: none; border-bottom: 1px solid var(--border); }
   .acard:last-child { border-bottom: none; }
-  .strip { gap: 1rem; }
-  .strip-sep { display: none; }
   footer { flex-direction: column; text-align: center; }
 }
 </style>
@@ -376,49 +245,32 @@ footer {
 <div class="ambient"></div>
 
 <section class="hero">
-  <div class="top-rule"><span>O'Farrell Charter Schools</span></div>
-
-  <p class="eyebrow">Welcome to</p>
-
   <h1>MR. ROGERS'<em>Homebase</em></h1>
-
-  <div class="divider"><div class="gem"></div></div>
-
-  <p class="sub">Your hub for activities &amp; projects</p>
-
-  <div class="scroll-hint">
-    <span>Scroll</span>
-    <div class="scroll-line"></div>
-  </div>
 </section>
 
-<div class="strip">
-  <div class="strip-sep"></div>
-  <div class="strip-item"><div class="strip-dot"></div>O'Farrell Charter Schools</div>
-  <div class="strip-sep"></div>
-  <div class="strip-item"><div class="strip-dot"></div>Class of 2026</div>
-</div>
-
 <section class="section">
-  <div class="sec-head">
-    <span class="sec-label">Activities &amp; Projects</span>
-    <div class="sec-rule"></div>
-  </div>
-
   <div class="grid">
 
     <a class="acard" href="https://script.google.com/a/macros/ofarrellschool.org/s/AKfycbyTlmf-qRkpWc_uRXry2GgxvPpMSDtVQNLqRIA299nyR0rSpZlJZ5dp6X6DLPGvi-kExQ/exec?mode=avid">
       <div class="acard-badge">Monday</div>
       <div class="acard-num">01</div>
-      <div class="acard-title">Monday AVID Check</div>
-      <div class="acard-desc">Complete this week's five-point organization, planner, supplies, or full AVID self-check.</div>
+      <div class="acard-title">AVID CHECK</div>
+      <div class="acard-desc">Check your physical binder, planner, backpack, and supplies for the week.</div>
       <div class="acard-cta"><div class="cta-line"></div>Open AVID Check</div>
     </a>
 
+    <div class="acard placeholder">
+      <div class="acard-badge">Tues–Thursday</div>
+      <div class="acard-num">02</div>
+      <div class="acard-title">HB WORK</div>
+      <div class="acard-desc">Homebase assignments and activities will appear here.</div>
+      <div class="acard-cta"><div class="cta-line"></div>Coming Soon</div>
+    </div>
+
     <a class="acard" href="https://script.google.com/a/macros/ofarrellschool.org/s/AKfycbyTlmf-qRkpWc_uRXry2GgxvPpMSDtVQNLqRIA299nyR0rSpZlJZ5dp6X6DLPGvi-kExQ/exec?mode=grades">
       <div class="acard-badge">Friday</div>
-      <div class="acard-num">02</div>
-      <div class="acard-title">Friday Grade Check</div>
+      <div class="acard-num">03</div>
+      <div class="acard-title">GRADE CHECK</div>
       <div class="acard-desc">Update current class grades, reflect on progress, and revise your entry until the weekly deadline.</div>
       <div class="acard-cta"><div class="cta-line"></div>Open Grade Check</div>
     </a>
