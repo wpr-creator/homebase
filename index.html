@@ -287,6 +287,44 @@ body {
 .upcoming-day strong { display: block; margin: .45rem 0; color: var(--navy-dark); font-size: 1rem; font-weight: 950; }
 .upcoming-day p { color: var(--muted); font-size: .76rem; font-weight: 650; line-height: 1.45; }
 
+.hb-work-section { padding-top: 2rem; }
+.hb-work-hero { padding: clamp(2.5rem, 7vw, 6rem); color: var(--white); background: var(--navy-dark); border-bottom: 16px solid var(--gold); }
+.hb-work-hero .agenda-kicker { color: var(--gold); }
+.hb-work-hero h1 { max-width: 900px; margin: .5rem 0 1rem; font-size: clamp(3rem, 8vw, 7rem); font-weight: 950; line-height: .86; letter-spacing: -.06em; }
+.hb-work-hero p:last-child { max-width: 720px; color: #dce5f1; font-size: clamp(1rem, 2vw, 1.3rem); font-weight: 700; line-height: 1.5; }
+.hb-work-grid { margin-top: 1rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.hb-work-grid article { min-height: 210px; padding: 1.5rem; background: var(--white); border: 1px solid var(--line); border-top: 7px solid var(--navy); }
+.hb-work-grid article:nth-child(2) { border-top-color: var(--gold); }
+.hb-work-grid article:nth-child(3) { border-top-color: var(--red); }
+.hb-work-grid h2 { margin-bottom: .7rem; color: var(--navy-dark); font-size: 1.4rem; }
+.hb-work-grid p { color: var(--muted); font-weight: 650; line-height: 1.5; }
+
+.admin-overlay { position: fixed; z-index: 900; inset: 0; padding: 1rem; display: grid; place-items: center; background: rgba(3,39,84,.88); }
+.admin-panel { width: min(800px, 100%); max-height: calc(100vh - 2rem); overflow: auto; background: var(--paper); border: 6px solid var(--white); box-shadow: 0 24px 80px rgba(0,0,0,.55); }
+.admin-header { padding: 1.2rem; display: flex; justify-content: space-between; gap: 1rem; color: var(--white); background: var(--navy-dark); }
+.admin-header h2 { margin: .2rem 0 0; }
+.admin-header .agenda-kicker { color: var(--gold); }
+.admin-header button { width: 46px; height: 46px; border: 1px solid var(--white); color: var(--white); background: transparent; cursor: pointer; font-size: 1.6rem; }
+.admin-grid { padding: 1.2rem; display: grid; gap: 1rem; }
+.admin-grid fieldset { margin: 0; padding: 1rem; border: 1px solid var(--line); }
+.admin-grid label, .admin-grid legend { display: grid; gap: .4rem; color: var(--navy-dark); font-size: .75rem; font-weight: 950; letter-spacing: .06em; }
+.admin-grid input, .admin-grid textarea, .admin-grid select { width: 100%; min-height: 46px; padding: .75rem; border: 1px solid #8d99a5; color: var(--ink); background: var(--white); font: 700 .95rem Arial, sans-serif; }
+.admin-grid textarea { resize: vertical; }
+.admin-grid input[type="checkbox"] { width: 22px; min-height: 22px; padding: 0; }
+.admin-check { margin-bottom: .8rem; display: grid !important; grid-template-columns: 22px 1fr; align-items: center; gap: .65rem !important; }
+.admin-two-column { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+.admin-note { margin: .4rem 0 .8rem; color: var(--muted); font-size: .75rem; font-weight: 650; line-height: 1.45; }
+.admin-token-help { display: inline-block; margin-bottom: .7rem; color: var(--navy); font-size: .75rem; font-weight: 950; }
+.admin-token-row { display: grid; grid-template-columns: 1fr auto auto; gap: .6rem; align-items: end; }
+.admin-token-row button, .admin-actions button { min-height: 46px; padding: .65rem .8rem; border: 1px solid var(--navy-dark); background: var(--white); cursor: pointer; font-size: .72rem; font-weight: 950; }
+.admin-connection-status { margin: .7rem 0 0; padding: .65rem .8rem; background: var(--navy-soft); border-left: 5px solid var(--navy); font-size: .74rem; font-weight: 900; }
+.admin-connection-status[data-connected="true"] { color: var(--white); background: var(--navy); }
+.admin-actions { padding: 1.2rem; display: flex; align-items: center; justify-content: flex-end; gap: .6rem; border-top: 1px solid var(--line); background: var(--white); }
+.admin-actions p { margin-right: auto; max-width: 350px; color: var(--muted); font-size: .72rem; font-weight: 700; line-height: 1.4; }
+#admin-publish { color: var(--white); background: var(--navy); }
+.admin-actions button:disabled, .admin-token-row button:disabled { color: #777; background: #e3e5e6; cursor: not-allowed; }
+.admin-status { min-height: 1.5rem; margin: 0; padding: 0 1.2rem 1rem; color: var(--navy-dark); font-size: .78rem; font-weight: 900; }
+
 footer {
   max-width: 1240px;
   margin: 0 auto;
@@ -324,6 +362,10 @@ footer {
   .upcoming-day { border-right: 0; border-bottom: 1px solid var(--line); }
   .upcoming-day strong, .upcoming-day p { overflow-wrap: anywhere; }
   .upcoming-day:last-child { border-bottom: 0; }
+  .hb-work-grid { grid-template-columns: 1fr; }
+  .admin-two-column, .admin-token-row { grid-template-columns: 1fr; }
+  .admin-actions { align-items: stretch; flex-direction: column; }
+  .admin-actions p { margin-right: 0; }
   footer { flex-direction: column; text-align: center; }
 }
 </style>
@@ -355,13 +397,13 @@ footer {
       <div class="acard-cta"><div class="cta-line"></div>Open AVID Check</div>
     </a>
 
-    <div class="acard placeholder">
+    <a class="acard placeholder" id="hb-work-card" href="#hb-work" aria-disabled="true">
       <div class="acard-badge">Tues–Thursday</div>
       <div class="acard-num">02</div>
       <div class="acard-title">HB WORK</div>
       <div class="acard-desc">Homebase assignments and activities will appear here.</div>
-      <div class="acard-cta"><div class="cta-line"></div>Coming Soon</div>
-    </div>
+      <div class="acard-cta"><div class="cta-line"></div><span id="hb-work-cta">Coming Soon</span></div>
+    </a>
 
     <a class="acard" href="https://script.google.com/a/macros/ofarrellschool.org/s/AKfycbyTlmf-qRkpWc_uRXry2GgxvPpMSDtVQNLqRIA299nyR0rSpZlJZ5dp6X6DLPGvi-kExQ/exec?mode=grades">
       <div class="acard-badge">Friday</div>
@@ -371,6 +413,19 @@ footer {
       <div class="acard-cta"><div class="cta-line"></div>Open Grade Check</div>
     </a>
 
+  </div>
+</section>
+
+<section class="section hb-work-section" id="hb-work" data-view="hb-work" hidden>
+  <div class="hb-work-hero">
+    <p class="agenda-kicker">Homebase activities</p>
+    <h1 id="hb-work-title">HB WORK</h1>
+    <p id="hb-work-intro">Homebase assignments and activities will appear here when this page opens.</p>
+  </div>
+  <div class="hb-work-grid" aria-label="Homebase work areas">
+    <article><h2>THIS WEEK</h2><p>Current Homebase directions and activities will appear here.</p></article>
+    <article><h2>RESOURCES</h2><p>Links and materials for Homebase work will appear here.</p></article>
+    <article><h2>FINISH &amp; SUBMIT</h2><p>Submission directions will appear here when an activity is assigned.</p></article>
   </div>
 </section>
 
@@ -400,12 +455,76 @@ footer {
   <div class="footer-right">O'Farrell Charter Schools &nbsp;·&nbsp;</div>
 </footer>
 
+<div class="admin-overlay" id="admin-overlay" role="dialog" aria-modal="true" aria-labelledby="admin-title" hidden>
+  <div class="admin-panel">
+    <div class="admin-header">
+      <div><p class="agenda-kicker">Type “dev” to open or close</p><h2 id="admin-title">HOMEBASE EDIT MODE</h2></div>
+      <button type="button" id="admin-close" aria-label="Close Homebase edit mode">×</button>
+    </div>
+    <div class="admin-grid">
+      <fieldset>
+        <legend>AGENDA DATE</legend>
+        <p class="admin-note">Choose a date, then add only the changes students should see for that day.</p>
+        <label>DATE<input id="admin-agenda-date" type="date"></label>
+        <label class="admin-check"><input id="admin-agenda-custom" type="checkbox"><span>Use custom agenda content for this date</span></label>
+        <div class="admin-two-column">
+          <label>SCHEDULE TYPE
+            <select id="admin-agenda-kind"><option value="AUTO">AUTO</option><option value="A">A DAY</option><option value="B">B DAY</option><option value="SPECIAL">SPECIAL</option><option value="NO SCHOOL">NO SCHOOL</option></select>
+          </label>
+          <label>CUSTOM BADGE LABEL<input id="admin-agenda-label" type="text" maxlength="50" placeholder="OPTIONAL"></label>
+        </div>
+        <label>DAY SUMMARY<textarea id="admin-agenda-summary" rows="3"></textarea></label>
+        <label>REMINDERS · ONE PER LINE<textarea id="admin-agenda-items" rows="6"></textarea></label>
+      </fieldset>
+      <fieldset>
+        <legend>HB WORK LANDING PAGE</legend>
+        <label class="admin-check"><input id="admin-hb-open" type="checkbox"><span>Open HB Work for students</span></label>
+        <p class="admin-note">This is saved as one site-wide setting. Leave it unchecked until the page is ready.</p>
+        <label>PAGE TITLE<input id="admin-hb-title" type="text" maxlength="50"></label>
+        <label>INTRODUCTION<textarea id="admin-hb-intro" rows="3"></textarea></label>
+      </fieldset>
+      <fieldset>
+        <legend>GITHUB CONNECTION</legend>
+        <p class="admin-note">Use a fine-grained token with Contents: Read and write access to only the homebase repository. The token stays in this browser and is never written into the site.</p>
+        <a class="admin-token-help" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">CREATE A FINE-GRAINED TOKEN ↗</a>
+        <div class="admin-token-row">
+          <label>GITHUB TOKEN<input id="admin-github-token" type="password" autocomplete="off" spellcheck="false" placeholder="PASTE TOKEN"></label>
+          <button type="button" id="admin-token-save">SAVE TOKEN</button>
+          <button type="button" id="admin-token-remove">REMOVE TOKEN</button>
+        </div>
+        <p class="admin-connection-status" id="admin-connection-status"></p>
+      </fieldset>
+    </div>
+    <div class="admin-actions">
+      <p>Preview stays on this device. Publish writes <strong>site-content.json</strong> to GitHub so everyone receives the update.</p>
+      <button type="button" id="admin-reset">RESET TO LIVE</button>
+      <button type="button" id="admin-save-preview">SAVE PREVIEW</button>
+      <button type="button" id="admin-publish">SAVE &amp; PUBLISH</button>
+    </div>
+    <p class="admin-status" id="admin-status" role="status"></p>
+  </div>
+</div>
+
 <script>
 (() => {
   'use strict';
 
   const SCHOOL_YEAR_START = '2026-08-04';
   const SCHOOL_YEAR_END = '2027-05-27';
+  const CONTENT_STORAGE_KEY = 'homebase-site-content-v1';
+  const GITHUB_TOKEN_STORAGE_KEY = 'homebase-github-token-v1';
+  const GITHUB_CONTENT_URL = 'https://api.github.com/repos/wpr-creator/homebase/contents/site-content.json';
+  const defaultContent = {
+    hbWorkOpen: false,
+    hbWork: {
+      title: 'HB WORK',
+      intro: 'Homebase assignments and activities will appear here when this page opens.'
+    },
+    agendaOverrides: {}
+  };
+  let siteContent = structuredClone(defaultContent);
+  let devKeys = '';
+  let renderedAgendaDate = new Date();
 
   // Calendar-specific changes and student-facing notices for the opening weeks.
   const calendar = {
@@ -480,7 +599,9 @@ footer {
 
   function scheduleFor(date) {
     const key = iso(date);
-    const override = calendar[key] || {};
+    const publishedOverride = siteContent.agendaOverrides?.[key] || {};
+    const override = { ...(calendar[key] || {}), ...publishedOverride };
+    if (publishedOverride.kind === 'AUTO') delete override.kind;
     if (override.kind) return { ...override, key };
     const day = date.getDay();
     if (key < SCHOOL_YEAR_START || key > SCHOOL_YEAR_END) return { ...override, key, kind: 'NO SCHOOL', summary: 'School is not in session.' };
@@ -498,6 +619,7 @@ footer {
   }
 
   function renderAgenda(date = new Date()) {
+    renderedAgendaDate = date;
     const day = scheduleFor(date);
     const weekday = date.toLocaleDateString('en-US', { weekday: 'long' });
     const displayDate = date.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
@@ -547,8 +669,20 @@ footer {
     }
   }
 
+  function renderHBWork() {
+    const open = Boolean(siteContent.hbWorkOpen);
+    const card = document.getElementById('hb-work-card');
+    card.classList.toggle('placeholder', !open);
+    card.setAttribute('aria-disabled', String(!open));
+    document.getElementById('hb-work-cta').textContent = open ? 'Open HB Work' : 'Coming Soon';
+    document.getElementById('hb-work-title').textContent = siteContent.hbWork?.title || 'HB WORK';
+    document.getElementById('hb-work-intro').textContent = siteContent.hbWork?.intro || defaultContent.hbWork.intro;
+  }
+
   function route() {
-    const name = location.hash === '#agenda' ? 'agenda' : 'home';
+    const requested = location.hash.slice(1) || 'home';
+    const name = requested === 'agenda' ? 'agenda' : requested === 'hb-work' && siteContent.hbWorkOpen ? 'hb-work' : 'home';
+    if (requested === 'hb-work' && !siteContent.hbWorkOpen) history.replaceState(null, '', '#home');
     document.querySelector('.hero').hidden = name !== 'home';
     document.querySelectorAll('[data-view]').forEach(view => { view.hidden = view.dataset.view !== name; });
     document.querySelectorAll('[data-tab]').forEach(tab => {
@@ -557,10 +691,214 @@ footer {
     });
   }
 
+  function normalizeContent(input) {
+    const source = input && typeof input === 'object' && !Array.isArray(input) ? input : {};
+    return {
+      hbWorkOpen: Boolean(source.hbWorkOpen),
+      hbWork: {
+        title: String(source.hbWork?.title || defaultContent.hbWork.title),
+        intro: String(source.hbWork?.intro || defaultContent.hbWork.intro)
+      },
+      agendaOverrides: source.agendaOverrides && typeof source.agendaOverrides === 'object' && !Array.isArray(source.agendaOverrides) ? source.agendaOverrides : {}
+    };
+  }
+
+  async function loadSiteContent() {
+    try {
+      const response = await fetch('site-content.json', { cache: 'no-store' });
+      if (response.ok) siteContent = normalizeContent(await response.json());
+    } catch (error) {
+      console.warn('Live Homebase settings could not be loaded.', error);
+    }
+    try {
+      const preview = localStorage.getItem(CONTENT_STORAGE_KEY);
+      if (preview) siteContent = normalizeContent(JSON.parse(preview));
+    } catch (error) {
+      localStorage.removeItem(CONTENT_STORAGE_KEY);
+      console.warn('Saved Homebase preview was invalid and has been cleared.', error);
+    }
+    renderHBWork();
+    renderAgenda(renderedAgendaDate);
+    route();
+  }
+
+  function setAgendaFormEnabled() {
+    const enabled = document.getElementById('admin-agenda-custom').checked;
+    ['admin-agenda-kind', 'admin-agenda-label', 'admin-agenda-summary', 'admin-agenda-items'].forEach(id => { document.getElementById(id).disabled = !enabled; });
+  }
+
+  function loadAgendaForm(dateKey) {
+    const custom = siteContent.agendaOverrides?.[dateKey];
+    document.getElementById('admin-agenda-custom').checked = Boolean(custom);
+    document.getElementById('admin-agenda-kind').value = custom?.kind || 'AUTO';
+    document.getElementById('admin-agenda-label').value = custom?.label || '';
+    document.getElementById('admin-agenda-summary').value = custom?.summary || '';
+    document.getElementById('admin-agenda-items').value = Array.isArray(custom?.items) ? custom.items.join('\n') : '';
+    setAgendaFormEnabled();
+  }
+
+  function openAdmin() {
+    const dateKey = iso(renderedAgendaDate);
+    document.getElementById('admin-agenda-date').value = dateKey;
+    loadAgendaForm(dateKey);
+    document.getElementById('admin-hb-open').checked = Boolean(siteContent.hbWorkOpen);
+    document.getElementById('admin-hb-title').value = siteContent.hbWork?.title || defaultContent.hbWork.title;
+    document.getElementById('admin-hb-intro').value = siteContent.hbWork?.intro || defaultContent.hbWork.intro;
+    document.getElementById('admin-github-token').value = '';
+    renderGitHubConnection();
+    document.getElementById('admin-overlay').hidden = false;
+    document.body.style.overflow = 'hidden';
+    document.getElementById('admin-close').focus();
+  }
+
+  function closeAdmin() {
+    document.getElementById('admin-overlay').hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  function buildAdminContent() {
+    const next = normalizeContent(siteContent);
+    const dateKey = document.getElementById('admin-agenda-date').value;
+    next.agendaOverrides = { ...next.agendaOverrides };
+    if (document.getElementById('admin-agenda-custom').checked && dateKey) {
+      const item = {
+        kind: document.getElementById('admin-agenda-kind').value,
+        summary: document.getElementById('admin-agenda-summary').value.trim(),
+        items: document.getElementById('admin-agenda-items').value.split('\n').map(value => value.trim()).filter(Boolean)
+      };
+      const label = document.getElementById('admin-agenda-label').value.trim();
+      if (label) item.label = label;
+      next.agendaOverrides[dateKey] = item;
+    } else if (dateKey) {
+      delete next.agendaOverrides[dateKey];
+    }
+    next.hbWorkOpen = document.getElementById('admin-hb-open').checked;
+    next.hbWork = {
+      title: document.getElementById('admin-hb-title').value.trim().toUpperCase() || 'HB WORK',
+      intro: document.getElementById('admin-hb-intro').value.trim() || defaultContent.hbWork.intro
+    };
+    return next;
+  }
+
+  function applyAdminContent(nextContent) {
+    siteContent = normalizeContent(nextContent);
+    localStorage.setItem(CONTENT_STORAGE_KEY, JSON.stringify(siteContent));
+    renderHBWork();
+    renderAgenda(renderedAgendaDate);
+    route();
+  }
+
+  function saveAdminPreview() {
+    applyAdminContent(buildAdminContent());
+    document.getElementById('admin-status').textContent = 'PREVIEW SAVED IN THIS BROWSER.';
+  }
+
+  function renderGitHubConnection(message = '') {
+    const connected = Boolean(localStorage.getItem(GITHUB_TOKEN_STORAGE_KEY));
+    const status = document.getElementById('admin-connection-status');
+    status.textContent = message || (connected ? 'GITHUB CONNECTED ON THIS DEVICE.' : 'GITHUB IS NOT CONNECTED.');
+    status.dataset.connected = String(connected);
+    document.getElementById('admin-token-remove').disabled = !connected;
+    document.getElementById('admin-publish').disabled = !connected;
+    document.getElementById('admin-github-token').placeholder = connected ? 'TOKEN SAVED ON THIS DEVICE' : 'PASTE TOKEN';
+  }
+
+  function encodeBase64(text) {
+    const bytes = new TextEncoder().encode(text);
+    let binary = '';
+    bytes.forEach(byte => { binary += String.fromCharCode(byte); });
+    return btoa(binary);
+  }
+
+  async function publishAdminContent() {
+    const token = localStorage.getItem(GITHUB_TOKEN_STORAGE_KEY);
+    if (!token) {
+      renderGitHubConnection('ADD AND SAVE A GITHUB TOKEN FIRST.');
+      document.getElementById('admin-github-token').focus();
+      return;
+    }
+    const publishButton = document.getElementById('admin-publish');
+    const status = document.getElementById('admin-status');
+    publishButton.disabled = true;
+    publishButton.textContent = 'PUBLISHING…';
+    status.textContent = 'CONNECTING TO GITHUB…';
+    try {
+      const headers = {
+        Accept: 'application/vnd.github+json',
+        Authorization: `Bearer ${token}`,
+        'X-GitHub-Api-Version': '2026-03-10'
+      };
+      const currentResponse = await fetch(`${GITHUB_CONTENT_URL}?ref=main`, { headers, cache: 'no-store' });
+      if (!currentResponse.ok) {
+        if (currentResponse.status === 401) throw new Error('TOKEN NOT ACCEPTED. CHECK OR REPLACE THE SAVED TOKEN.');
+        if (currentResponse.status === 403) throw new Error('TOKEN NEEDS CONTENTS: READ AND WRITE ACCESS TO THE HOMEBASE REPOSITORY.');
+        throw new Error(`GITHUB COULD NOT READ THE SETTINGS FILE (${currentResponse.status}).`);
+      }
+      const currentFile = await currentResponse.json();
+      const nextContent = buildAdminContent();
+      const output = `${JSON.stringify(nextContent, null, 2)}\n`;
+      const updateResponse = await fetch(GITHUB_CONTENT_URL, {
+        method: 'PUT',
+        headers: { ...headers, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: 'Update Homebase settings', content: encodeBase64(output), sha: currentFile.sha, branch: 'main' })
+      });
+      if (!updateResponse.ok) {
+        if (updateResponse.status === 401) throw new Error('TOKEN NOT ACCEPTED. CHECK OR REPLACE THE SAVED TOKEN.');
+        if (updateResponse.status === 403) throw new Error('TOKEN NEEDS CONTENTS: READ AND WRITE ACCESS TO THE HOMEBASE REPOSITORY.');
+        if (updateResponse.status === 409) throw new Error('THE SETTINGS CHANGED ON GITHUB. RESET TO LIVE, REOPEN DEV MODE, AND TRY AGAIN.');
+        throw new Error(`GITHUB COULD NOT PUBLISH THE SETTINGS (${updateResponse.status}).`);
+      }
+      applyAdminContent(nextContent);
+      status.textContent = 'PUBLISHED. GITHUB PAGES SHOULD UPDATE IN ABOUT A MINUTE.';
+    } catch (error) {
+      status.textContent = error.message || 'THE SETTINGS COULD NOT BE PUBLISHED.';
+    } finally {
+      publishButton.textContent = 'SAVE & PUBLISH';
+      publishButton.disabled = !localStorage.getItem(GITHUB_TOKEN_STORAGE_KEY);
+    }
+  }
+
   window.addEventListener('hashchange', route);
   const previewDate = new URLSearchParams(location.search).get('date');
-  renderAgenda(/^\d{4}-\d{2}-\d{2}$/.test(previewDate || '') ? new Date(`${previewDate}T12:00:00`) : new Date());
+  renderedAgendaDate = /^\d{4}-\d{2}-\d{2}$/.test(previewDate || '') ? new Date(`${previewDate}T12:00:00`) : new Date();
+  document.getElementById('hb-work-card').addEventListener('click', event => { if (!siteContent.hbWorkOpen) event.preventDefault(); });
+  document.getElementById('admin-close').addEventListener('click', closeAdmin);
+  document.getElementById('admin-agenda-date').addEventListener('change', event => loadAgendaForm(event.target.value));
+  document.getElementById('admin-agenda-custom').addEventListener('change', setAgendaFormEnabled);
+  document.getElementById('admin-save-preview').addEventListener('click', saveAdminPreview);
+  document.getElementById('admin-publish').addEventListener('click', publishAdminContent);
+  document.getElementById('admin-token-save').addEventListener('click', () => {
+    const tokenInput = document.getElementById('admin-github-token');
+    const token = tokenInput.value.trim();
+    if (!token) { renderGitHubConnection('PASTE A TOKEN BEFORE SAVING.'); tokenInput.focus(); return; }
+    localStorage.setItem(GITHUB_TOKEN_STORAGE_KEY, token);
+    tokenInput.value = '';
+    renderGitHubConnection('TOKEN SAVED. SAVE & PUBLISH IS READY.');
+  });
+  document.getElementById('admin-token-remove').addEventListener('click', () => {
+    localStorage.removeItem(GITHUB_TOKEN_STORAGE_KEY);
+    document.getElementById('admin-github-token').value = '';
+    renderGitHubConnection('TOKEN REMOVED FROM THIS DEVICE.');
+  });
+  document.getElementById('admin-reset').addEventListener('click', () => {
+    localStorage.removeItem(CONTENT_STORAGE_KEY);
+    location.reload();
+  });
+  document.getElementById('admin-overlay').addEventListener('click', event => { if (event.target.id === 'admin-overlay') closeAdmin(); });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !document.getElementById('admin-overlay').hidden) closeAdmin();
+    if (!event.metaKey && !event.ctrlKey && !event.altKey && !/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)) {
+      devKeys = (devKeys + event.key.toLowerCase()).slice(-3);
+      if (devKeys === 'dev') {
+        if (document.getElementById('admin-overlay').hidden) openAdmin(); else closeAdmin();
+        devKeys = '';
+      }
+    }
+  });
+  renderHBWork();
+  renderAgenda(renderedAgendaDate);
   route();
+  loadSiteContent();
 })();
 </script>
 
