@@ -278,7 +278,7 @@ body {
 .day-badge[data-kind="A"] { color: var(--navy-dark); background: var(--gold); }
 .day-badge[data-kind="B"] { background: var(--red); }
 .day-badge[data-kind="SPECIAL"] { color: var(--navy-dark); background: var(--gold); }
-.upcoming-strip { margin-top: 1rem; background: var(--white); border: 1px solid var(--line); }
+.upcoming-strip { margin-bottom: 1rem; background: var(--white); border: 1px solid var(--line); }
 .upcoming-heading { padding: 1rem 1.25rem; color: var(--white); background: var(--navy); font-size: .72rem; font-weight: 950; letter-spacing: .12em; text-transform: uppercase; }
 .upcoming-days { display: grid; grid-template-columns: repeat(5, 1fr); }
 .upcoming-day { min-width: 0; padding: 1rem; border-right: 1px solid var(--line); }
@@ -430,6 +430,10 @@ footer {
 </section>
 
 <section class="section agenda-section" id="agenda" data-view="agenda" hidden>
+  <section class="upcoming-strip" aria-labelledby="upcoming-heading">
+    <h2 class="upcoming-heading" id="upcoming-heading">COMING SOON</h2>
+    <div class="upcoming-days" id="upcoming-days"></div>
+  </section>
   <div class="agenda-shell">
     <article class="agenda-main" aria-labelledby="agenda-title">
       <p class="agenda-kicker" id="agenda-kicker">Today in Homebase</p>
@@ -444,10 +448,6 @@ footer {
       <p class="day-badge" id="day-badge"></p>
     </aside>
   </div>
-  <section class="upcoming-strip" aria-labelledby="upcoming-heading">
-    <h2 class="upcoming-heading" id="upcoming-heading">Next school days</h2>
-    <div class="upcoming-days" id="upcoming-days"></div>
-  </section>
 </section>
 
 <footer>
