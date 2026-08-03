@@ -397,12 +397,12 @@ footer {
       <div class="acard-cta"><div class="cta-line"></div>Open AVID Check</div>
     </a>
 
-    <a class="acard placeholder" id="hb-work-card" href="#hb-work" aria-disabled="true">
+    <a class="acard" id="hb-work-card" href="https://sites.google.com/ofarrellschool.org/homebase/Sophomore" onclick="return confirm('Bookmark this Homebase page in Chrome: press Ctrl + D on your Chromebook, then choose Done. You can also click the star in the address bar.\n\nSelect OK to continue to the Class of 2029 portal, or Cancel to stay here.')">
       <div class="acard-badge">Tues–Thursday</div>
       <div class="acard-num">02</div>
-      <div class="acard-title">HB WORK</div>
-      <div class="acard-desc">Homebase assignments and activities will appear here.</div>
-      <div class="acard-cta"><div class="cta-line"></div><span id="hb-work-cta">Coming Soon</span></div>
+      <div class="acard-title">CLASS OF 2029 PORTAL</div>
+      <div class="acard-desc">Open the Sophomore Homebase page for Tuesday through Thursday activities.</div>
+      <div class="acard-cta"><div class="cta-line"></div><span id="hb-work-cta">Open Homebase Portal</span></div>
     </a>
 
     <a class="acard" href="https://script.google.com/a/macros/ofarrellschool.org/s/AKfycbyTlmf-qRkpWc_uRXry2GgxvPpMSDtVQNLqRIA299nyR0rSpZlJZ5dp6X6DLPGvi-kExQ/exec?mode=grades">
@@ -670,11 +670,6 @@ footer {
   }
 
   function renderHBWork() {
-    const open = Boolean(siteContent.hbWorkOpen);
-    const card = document.getElementById('hb-work-card');
-    card.classList.toggle('placeholder', !open);
-    card.setAttribute('aria-disabled', String(!open));
-    document.getElementById('hb-work-cta').textContent = open ? 'Open HB Work' : 'Coming Soon';
     document.getElementById('hb-work-title').textContent = siteContent.hbWork?.title || 'HB WORK';
     document.getElementById('hb-work-intro').textContent = siteContent.hbWork?.intro || defaultContent.hbWork.intro;
   }
@@ -861,7 +856,7 @@ footer {
   window.addEventListener('hashchange', route);
   const previewDate = new URLSearchParams(location.search).get('date');
   renderedAgendaDate = /^\d{4}-\d{2}-\d{2}$/.test(previewDate || '') ? new Date(`${previewDate}T12:00:00`) : new Date();
-  document.getElementById('hb-work-card').addEventListener('click', event => { if (!siteContent.hbWorkOpen) event.preventDefault(); });
+
   document.getElementById('admin-close').addEventListener('click', closeAdmin);
   document.getElementById('admin-agenda-date').addEventListener('change', event => loadAgendaForm(event.target.value));
   document.getElementById('admin-agenda-custom').addEventListener('change', setAgendaFormEnabled);
