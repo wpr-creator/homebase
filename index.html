@@ -278,6 +278,21 @@ body {
 .day-badge[data-kind="A"] { color: var(--navy-dark); background: var(--gold); }
 .day-badge[data-kind="B"] { background: var(--red); }
 .day-badge[data-kind="SPECIAL"] { color: var(--navy-dark); background: var(--gold); }
+.agenda-portal-link {
+  width: fit-content;
+  margin-top: 1rem;
+  padding: .8rem 1rem;
+  color: var(--navy-dark);
+  background: var(--gold);
+  border: 2px solid var(--gold);
+  font-size: .72rem;
+  font-weight: 950;
+  letter-spacing: .06em;
+  line-height: 1.35;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.agenda-portal-link:hover { color: var(--white); background: transparent; }
 .upcoming-strip { margin-bottom: 1rem; background: var(--white); border: 1px solid var(--line); }
 .upcoming-heading { padding: 1rem 1.25rem; color: var(--white); background: var(--navy); font-size: .72rem; font-weight: 950; letter-spacing: .12em; text-transform: uppercase; }
 .upcoming-days { display: grid; grid-template-columns: repeat(5, 1fr); }
@@ -446,6 +461,7 @@ footer {
       <p class="agenda-weekday" id="agenda-weekday"></p>
       <time class="agenda-date" id="agenda-date"></time>
       <p class="day-badge" id="day-badge"></p>
+      <a class="agenda-portal-link" href="https://sites.google.com/ofarrellschool.org/homebase/Sophomore">Class of 2029 Homebase Portal</a>
     </aside>
   </div>
 </section>
