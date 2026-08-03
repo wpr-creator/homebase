@@ -604,12 +604,12 @@ footer {
     if (publishedOverride.kind === 'AUTO') delete override.kind;
     if (override.kind) return { ...override, key };
     const day = date.getDay();
-    if (key < SCHOOL_YEAR_START || key > SCHOOL_YEAR_END) return { ...override, key, kind: 'NO SCHOOL', summary: 'School is not in session.' };
-    if (day === 0 || day === 6) return { ...override, key, kind: 'NO SCHOOL', summary: 'No school today.' };
-    if (day === 1 || day === 4) return { ...override, key, kind: 'A', summary: 'Today follows the A Day schedule.' };
-    if (day === 2 || day === 5) return { ...override, key, kind: 'B', summary: 'Today follows the B Day schedule.' };
+    if (key < SCHOOL_YEAR_START || key > SCHOOL_YEAR_END) return { key, kind: 'NO SCHOOL', summary: 'School is not in session.', ...override };
+    if (day === 0 || day === 6) return { key, kind: 'NO SCHOOL', summary: 'No school today.', ...override };
+    if (day === 1 || day === 4) return { key, kind: 'A', summary: 'Today follows the A Day schedule.', ...override };
+    if (day === 2 || day === 5) return { key, kind: 'B', summary: 'Today follows the B Day schedule.', ...override };
     const kind = wednesdayDays[key] || 'SPECIAL';
-    return { ...override, key, kind, summary: override.summary || (kind === 'A' || kind === 'B' ? `Today follows the ${kind} Day schedule.` : 'Check the school’s posted Wednesday schedule.') };
+    return { key, kind, summary: kind === 'A' || kind === 'B' ? `Today follows the ${kind} Day schedule.` : 'Check the school’s posted Wednesday schedule.', ...override };
   }
 
   function labelFor(day) {
