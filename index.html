@@ -466,7 +466,7 @@ footer {
         <legend>AGENDA DATE</legend>
         <p class="admin-note">Choose a date, then add only the changes students should see for that day.</p>
         <label>DATE<input id="admin-agenda-date" type="date"></label>
-        <label class="admin-check"><input id="admin-agenda-custom" type="checkbox"><span>Use custom agenda content for this date</span></label>
+        <label class="admin-check"><input id="admin-agenda-custom" type="checkbox"><span>Edit agenda text for this date</span></label>
         <div class="admin-two-column">
           <label>SCHEDULE TYPE
             <select id="admin-agenda-kind"><option value="AUTO">AUTO</option><option value="A">A DAY</option><option value="B">B DAY</option><option value="SPECIAL">SPECIAL</option><option value="NO SCHOOL">NO SCHOOL</option></select>
@@ -621,6 +621,7 @@ footer {
   function renderAgenda(date = new Date()) {
     renderedAgendaDate = date;
     const day = scheduleFor(date);
+    const editableAgenda = siteContent.agendaOverrides?.[day.key] || {};
     const weekday = date.toLocaleDateString('en-US', { weekday: 'long' });
     const displayDate = date.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
     const time = document.getElementById('agenda-date');
@@ -630,20 +631,14 @@ footer {
     const badge = document.getElementById('day-badge');
     badge.textContent = labelFor(day);
     badge.dataset.kind = day.kind;
-    document.getElementById('day-summary').textContent = day.summary || `Today follows the ${day.kind} Day schedule.`;
+    document.getElementById('day-summary').textContent = editableAgenda.summary || '';
     const list = document.getElementById('agenda-list');
     list.replaceChildren();
-    (day.items || []).forEach(text => {
+    (editableAgenda.items || []).forEach(text => {
       const item = document.createElement('li');
       item.textContent = text;
       list.appendChild(item);
     });
-    if (!list.children.length) {
-      const item = document.createElement('li');
-      item.className = 'agenda-empty';
-      item.textContent = day.kind === 'NO SCHOOL' ? 'Enjoy the day away from campus.' : 'No additional school-calendar reminders today.';
-      list.appendChild(item);
-    }
 
     const upcoming = document.getElementById('upcoming-days');
     upcoming.replaceChildren();
