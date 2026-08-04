@@ -556,6 +556,7 @@ footer {
     agendaOverrides: {}
   };
   let siteContent = structuredClone(defaultContent);
+  let liveContentFingerprint = '';
   let devKeys = '';
   let renderedAgendaDate = new Date();
 
@@ -762,9 +763,17 @@ footer {
     } catch (error) {
       console.warn('Live Homebase settings could not be loaded.', error);
     }
+    liveContentFingerprint = JSON.stringify(siteContent);
     try {
       const preview = localStorage.getItem(CONTENT_STORAGE_KEY);
-      if (preview) siteContent = normalizeContent(JSON.parse(preview));
+      if (preview) {
+        const savedPreview = JSON.parse(preview);
+        if (savedPreview?.baseFingerprint === liveContentFingerprint && savedPreview.content) {
+          siteContent = normalizeContent(savedPreview.content);
+        } else {
+          localStorage.removeItem(CONTENT_STORAGE_KEY);
+        }
+      }
     } catch (error) {
       localStorage.removeItem(CONTENT_STORAGE_KEY);
       console.warn('Saved Homebase preview was invalid and has been cleared.', error);
@@ -834,7 +843,7 @@ footer {
 
   function applyAdminContent(nextContent) {
     siteContent = normalizeContent(nextContent);
-    localStorage.setItem(CONTENT_STORAGE_KEY, JSON.stringify(siteContent));
+    localStorage.setItem(CONTENT_STORAGE_KEY, JSON.stringify({ baseFingerprint: liveContentFingerprint, content: siteContent }));
     renderHBWork();
     renderAgenda(renderedAgendaDate);
     route();
