@@ -246,7 +246,10 @@ body {
   letter-spacing: -.06em;
   overflow-wrap: anywhere;
 }
-.day-summary { max-width: 820px; color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.35rem); font-weight: 700; line-height: 1.5; }
+.day-summary { max-width: 820px; color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.35rem); font-weight: 700; line-height: 1.5; white-space: pre-wrap; }
+.day-summary a, .agenda-list a { color: var(--navy); font-weight: 950; overflow-wrap: anywhere; text-decoration-thickness: 2px; text-underline-offset: .18em; }
+.day-summary a:hover, .agenda-list a:hover { color: var(--red); }
+.day-summary a:focus-visible, .agenda-list a:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
 .agenda-list { margin: 1.5rem 0 0; padding: 0; list-style: none; display: grid; gap: .75rem; }
 .agenda-list li {
   padding: 1rem 1.1rem;
@@ -647,6 +650,31 @@ footer {
     return day.kind === 'NO SCHOOL' ? 'No School' : 'Special Schedule';
   }
 
+  function addTextWithLinks(container, text) {
+    container.replaceChildren();
+    const value = String(text || '');
+    const urlPattern = /https?:\/\/[^\s<]+/gi;
+    let cursor = 0;
+    for (const match of value.matchAll(urlPattern)) {
+      const rawUrl = match[0];
+      const url = rawUrl.replace(/[.,!?;:)}\]]+$/, '');
+      const start = match.index;
+      if (start > cursor) container.append(document.createTextNode(value.slice(cursor, start)));
+      if (url) {
+        const link = document.createElement('a');
+        link.href = url;
+        link.textContent = url;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        container.append(link);
+      }
+      const trailing = rawUrl.slice(url.length);
+      if (trailing) container.append(document.createTextNode(trailing));
+      cursor = start + rawUrl.length;
+    }
+    if (cursor < value.length) container.append(document.createTextNode(value.slice(cursor)));
+  }
+
   function renderAgenda(date = new Date()) {
     renderedAgendaDate = date;
     const day = scheduleFor(date);
@@ -660,12 +688,12 @@ footer {
     const badge = document.getElementById('day-badge');
     badge.textContent = labelFor(day);
     badge.dataset.kind = day.kind;
-    document.getElementById('day-summary').textContent = editableAgenda.summary || '';
+    addTextWithLinks(document.getElementById('day-summary'), editableAgenda.summary);
     const list = document.getElementById('agenda-list');
     list.replaceChildren();
     (editableAgenda.items || []).forEach(text => {
       const item = document.createElement('li');
-      item.textContent = text;
+      addTextWithLinks(item, text);
       list.appendChild(item);
     });
 
