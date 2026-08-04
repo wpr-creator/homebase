@@ -4,5 +4,15 @@
     "title": "HB WORK",
     "intro": "Homebase assignments and activities will appear here when this page opens."
   },
-  "agendaOverrides": {}
+  "agendaOverrides": {
+    "2026-08-04": {
+      "kind": "SPECIAL",
+      "label": "First Day · Special Schedule",
+      "summary": "👋 **WELCOME BACK!**",
+      "items": [
+        "✅ **YOU DO:** Visit https://tinyurl.com/hbsite and bookmark it by pressing **Ctrl + D** on your keyboard. Then open the **Class of 2029 Portal**, bookmark it too, and take a few minutes to look around.",
+        "🤝 **WE DO:** Review the [First Day Slides and Updated Policies](https://docs.google.com/presentation/d/1zVjbKDgsomjS2Nw_CISHwBFT4DvCFXd9PIMVc7UXSeI/edit?slide=id.g3f97e9e7e58_0_5#slide=id.g3f97e9e7e58_0_5)."
+      ]
+    }
+  }
 }

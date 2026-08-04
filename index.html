@@ -247,6 +247,7 @@ body {
   overflow-wrap: anywhere;
 }
 .day-summary { max-width: 820px; color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.35rem); font-weight: 700; line-height: 1.5; white-space: pre-wrap; }
+.day-summary strong, .agenda-list strong { color: var(--navy-dark); font-weight: 950; }
 .day-summary a, .agenda-list a { color: var(--navy); font-weight: 950; overflow-wrap: anywhere; text-decoration-thickness: 2px; text-underline-offset: .18em; }
 .day-summary a:hover, .agenda-list a:hover { color: var(--red); }
 .day-summary a:focus-visible, .agenda-list a:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
@@ -496,7 +497,7 @@ footer {
     <div class="admin-grid">
       <fieldset>
         <legend>AGENDA DATE</legend>
-        <p class="admin-note">Choose a date, then add only the changes students should see for that day.</p>
+        <p class="admin-note">Choose a date, then add only what students should see. Use **bold text** for emphasis or [link words](https://example.com) for a labeled link.</p>
         <label>DATE<input id="admin-agenda-date" type="date"></label>
         <label class="admin-check"><input id="admin-agenda-custom" type="checkbox"><span>Edit agenda text for this date</span></label>
         <div class="admin-two-column">
@@ -650,27 +651,31 @@ footer {
     return day.kind === 'NO SCHOOL' ? 'No School' : 'Special Schedule';
   }
 
-  function addTextWithLinks(container, text) {
+  function addFormattedText(container, text) {
     container.replaceChildren();
     const value = String(text || '');
-    const urlPattern = /https?:\/\/[^\s<]+/gi;
+    const tokenPattern = /\*\*([^*]+)\*\*|\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)|(https?:\/\/[^\s<]+)/gi;
     let cursor = 0;
-    for (const match of value.matchAll(urlPattern)) {
-      const rawUrl = match[0];
-      const url = rawUrl.replace(/[.,!?;:)}\]]+$/, '');
+    for (const match of value.matchAll(tokenPattern)) {
       const start = match.index;
       if (start > cursor) container.append(document.createTextNode(value.slice(cursor, start)));
-      if (url) {
+      if (match[1]) {
+        const strong = document.createElement('strong');
+        strong.textContent = match[1];
+        container.append(strong);
+      } else {
+        const rawUrl = match[3] || match[4];
+        const url = match[3] || rawUrl.replace(/[.,!?;:)}\]]+$/, '');
         const link = document.createElement('a');
         link.href = url;
-        link.textContent = url;
+        link.textContent = match[2] || url;
         link.target = '_blank';
         link.rel = 'noopener noreferrer';
         container.append(link);
+        const trailing = rawUrl.slice(url.length);
+        if (trailing) container.append(document.createTextNode(trailing));
       }
-      const trailing = rawUrl.slice(url.length);
-      if (trailing) container.append(document.createTextNode(trailing));
-      cursor = start + rawUrl.length;
+      cursor = start + match[0].length;
     }
     if (cursor < value.length) container.append(document.createTextNode(value.slice(cursor)));
   }
@@ -688,12 +693,12 @@ footer {
     const badge = document.getElementById('day-badge');
     badge.textContent = labelFor(day);
     badge.dataset.kind = day.kind;
-    addTextWithLinks(document.getElementById('day-summary'), editableAgenda.summary);
+    addFormattedText(document.getElementById('day-summary'), editableAgenda.summary);
     const list = document.getElementById('agenda-list');
     list.replaceChildren();
     (editableAgenda.items || []).forEach(text => {
       const item = document.createElement('li');
-      addTextWithLinks(item, text);
+      addFormattedText(item, text);
       list.appendChild(item);
     });
 
