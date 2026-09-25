@@ -54,26 +54,6 @@ body {
   overflow-x: hidden;
 }
 
-.site-header {
-  min-height: 68px;
-  padding: .55rem max(24px, calc((100vw - 1240px) / 2));
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  background: var(--white);
-  border-bottom: 1px solid var(--line);
-}
-.brand {
-  display: flex;
-  align-items: center;
-  color: var(--navy);
-  text-decoration: none;
-  font-family: 'Barlow Condensed', 'Arial Narrow', Impact, sans-serif;
-  text-transform: uppercase;
-}
-.brand strong { display: block; font-size: 1.48rem; font-weight: 800; letter-spacing: .025em; }
-.brand small { display: block; margin-top: .08rem; color: var(--muted); font-family: 'Source Sans 3', Arial, sans-serif; font-size: .7rem; font-weight: 750; letter-spacing: .13em; }
-
 .hero {
   padding: clamp(2.4rem, 6vw, 4rem) max(24px, calc((100vw - 1120px) / 2)) clamp(2.4rem, 6vw, 4rem);
   background: var(--navy-dark);
@@ -91,12 +71,13 @@ body {
 .hero h1 {
   color: var(--white);
   font-family: 'Barlow Condensed', 'Arial Narrow', Impact, sans-serif;
-  font-size: clamp(4.8rem, 11vw, 8.5rem);
+  font-size: clamp(4rem, 9vw, 7rem);
   font-weight: 800;
-  line-height: .86;
+  line-height: .82;
   letter-spacing: .025em;
   text-transform: uppercase;
 }
+.hero h1 span { display: block; margin-top: .18em; color: var(--gold); font-size: .68em; letter-spacing: .1em; }
 
 .section {
   max-width: 1120px;
@@ -124,15 +105,6 @@ body {
   transition: background .2s;
 }
 .portal-link:hover { background: var(--navy-dark); }
-.portal-eyebrow {
-  display: block;
-  margin-bottom: .25rem;
-  color: #ffdc94;
-  font-size: .9rem;
-  font-weight: 800;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-}
 .portal-title {
   color: var(--white);
   font-family: 'Barlow Condensed', 'Arial Narrow', Impact, sans-serif;
@@ -228,7 +200,7 @@ body {
   letter-spacing: .09em;
   text-transform: uppercase;
 }
-.brand:focus-visible, .portal-link:focus-visible, .activity-row:focus-visible {
+.portal-link:focus-visible, .activity-row:focus-visible {
   outline: 3px solid var(--gold);
   outline-offset: 3px;
 }
@@ -369,28 +341,10 @@ body {
 .admin-actions button:disabled, .admin-token-row button:disabled { color: #777; background: #e3e5e6; cursor: not-allowed; }
 .admin-status { min-height: 1.5rem; margin: 0; padding: 0 1.2rem 1rem; color: var(--navy-dark); font-size: .78rem; font-weight: 900; }
 
-footer {
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 1.5rem 24px 3rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  color: var(--muted);
-  border-top: 1px solid var(--line);
-}
-.footer-mark { color: var(--navy); font-size: .8rem; font-weight: 950; letter-spacing: .08em; text-transform: uppercase; }
-.footer-right { font-size: .72rem; letter-spacing: .04em; }
-
 @media (max-width: 700px) {
-  .site-header { padding: .65rem 1rem; }
-  .brand { min-width: 0; }
-  .brand strong { font-size: 1.05rem; }
-  .brand small { font-size: .62rem; }
-  .hero { padding: 2.2rem 1rem 1.6rem; }
-  .hero p { font-size: .72rem; }
-  .hero h1 { font-size: clamp(3.2rem, 16vw, 4.5rem); }
+  .hero { padding: 2.2rem 1rem 2rem; }
+  .hero p { font-size: .82rem; }
+  .hero h1 { font-size: clamp(3.3rem, 15vw, 5rem); }
   .section { padding: 1.5rem 1rem 2.25rem; }
   .portal-link { align-items: flex-start; flex-direction: column; gap: .7rem; }
   .portal-action { margin-left: 0; }
@@ -410,7 +364,6 @@ footer {
   .admin-two-column, .admin-token-row { grid-template-columns: 1fr; }
   .admin-actions { align-items: stretch; flex-direction: column; }
   .admin-actions p { margin-right: 0; }
-  footer { flex-direction: column; text-align: center; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -420,15 +373,9 @@ footer {
 </head>
 <body>
 
-<header class="site-header">
-  <a class="brand" href="#home" aria-label="Mr. Rogers' Homebase home">
-    <span><strong>Mr. Rogers' Homebase</strong><small>O'Farrell Charter School</small></span>
-  </a>
-</header>
-
 <section class="hero">
-  <p>Class of 2029 &nbsp;·&nbsp; O’Farrell Charter School</p>
-  <h1>Homebase</h1>
+  <p>O’Farrell Charter School &nbsp;·&nbsp; Class of 2029</p>
+  <h1>Mr. Rogers’<span>Homebase</span></h1>
 </section>
 
 <section class="section" id="home" data-view="home">
@@ -436,7 +383,6 @@ footer {
     <main class="home-main">
       <a class="portal-link" href="https://sites.google.com/ofarrellschool.org/homebase/Sophomore">
         <span>
-          <span class="portal-eyebrow">Class of 2029</span>
           <span class="portal-title">Sophomore Homebase Portal</span>
         </span>
         <span class="portal-action">Open portal&nbsp; ↗</span>
@@ -514,11 +460,6 @@ footer {
     </aside>
   </div>
 </section>
-
-<footer>
-  <div class="footer-mark">Mr. Rogers' Homebase</div>
-  <div class="footer-right">O'Farrell Charter Schools &nbsp;·&nbsp;</div>
-</footer>
 
 <div class="admin-overlay" id="admin-overlay" role="dialog" aria-modal="true" aria-labelledby="admin-title" hidden>
   <div class="admin-panel">
