@@ -175,39 +175,32 @@ body {
   border-left: 2px solid var(--red);
 }
 .detention-heading {
-  margin: 0 0 .75rem;
+  margin: 0 0 .45rem;
   color: var(--navy-dark);
   font-family: 'Barlow Condensed', 'Arial Narrow', Impact, sans-serif;
-  font-size: 1.9rem;
+  font-size: 2.15rem;
   font-weight: 700;
   letter-spacing: .04em;
   line-height: 1.05;
   text-transform: uppercase;
 }
-.detention-names { list-style: none; }
-.detention-names li {
-  padding: .55rem 0;
-  border-top: 1px solid var(--line);
-  color: var(--ink);
-  font-size: 1.15rem;
-  font-weight: 800;
-}
-.detention-types {
-  margin-top: .6rem;
-  border-top: 1px solid var(--line);
-  list-style: none;
-}
-.detention-types li { padding: .65rem 0; border-bottom: 1px solid var(--line); }
-.detention-types strong {
-  display: block;
+.detention-type { padding: .7rem 0; border-top: 1px solid var(--line); }
+.detention-type h3 {
   color: var(--navy-dark);
   font-family: 'Barlow Condensed', 'Arial Narrow', Impact, sans-serif;
   font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: .04em;
+  line-height: 1.15;
   text-transform: uppercase;
 }
-.detention-types span { display: block; color: var(--muted); font-size: .95rem; font-weight: 700; }
+.detention-names { margin-top: .25rem; list-style: none; }
+.detention-names li {
+  padding: .2rem 0;
+  color: var(--red);
+  font-size: 1.15rem;
+  font-weight: 800;
+}
 .portal-link:focus-visible, .activity-row:focus-visible {
   outline: 3px solid var(--gold);
   outline-offset: 3px;
@@ -423,15 +416,20 @@ body {
     </main>
 
     <aside class="detention-notice" aria-labelledby="detention-title">
-      <h2 class="detention-heading" id="detention-title">20-Minute Detentions Due</h2>
-      <ul class="detention-names" aria-label="Students with detention due">
-        <li>Adrian</li>
-        <li>Yvan</li>
-      </ul>
-      <ul class="detention-types" aria-label="Additional detention and diversion periods">
-        <li><strong>Wednesday Detention</strong><span>20 minutes</span></li>
-        <li><strong>Saturday Diversion</strong><span>20 minutes</span></li>
-      </ul>
+      <h2 class="detention-heading" id="detention-title">Detentions Due</h2>
+      <section class="detention-type" aria-labelledby="regular-detention-title">
+        <h3 id="regular-detention-title">20-Minute Detention</h3>
+        <ul class="detention-names" aria-label="Students with a 20-minute detention due">
+          <li>Adrian</li>
+          <li>Yvan</li>
+        </ul>
+      </section>
+      <section class="detention-type" aria-labelledby="wednesday-detention-title">
+        <h3 id="wednesday-detention-title">Wednesday Detention</h3>
+      </section>
+      <section class="detention-type" aria-labelledby="saturday-diversion-title">
+        <h3 id="saturday-diversion-title">Saturday Diversion</h3>
+      </section>
     </aside>
   </div>
 </section>
