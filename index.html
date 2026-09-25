@@ -90,178 +90,149 @@ body {
 .tab:hover, .tab[aria-current="page"] { color: var(--white); background: var(--navy); }
 
 .hero {
-  min-height: 160px;
-  padding: 1.75rem max(24px, calc((100vw - 1240px) / 2));
+  min-height: 132px;
+  padding: 1.5rem max(24px, calc((100vw - 1240px) / 2));
   display: flex;
   align-items: center;
   background: var(--navy-dark);
-  position: relative;
-  overflow: hidden;
-}
-.hero::before {
-  content: '';
-  width: 340px;
-  height: 340px;
-  position: absolute;
-  right: 2%;
-  top: -210px;
-  border: 42px solid var(--gold);
-  border-radius: 50%;
-  opacity: .9;
-}
-.hero::after {
-  content: '';
-  width: 52%;
-  height: 8px;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  background: var(--red);
 }
 .hero h1 {
   max-width: 1040px;
   color: var(--white);
-  font-size: clamp(2.6rem, 6vw, 4.75rem);
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
   font-weight: 950;
-  line-height: .84;
-  letter-spacing: -.065em;
-  text-transform: uppercase;
-  position: relative;
-  z-index: 1;
+  line-height: 1.05;
+  letter-spacing: -.045em;
 }
 .hero h1 em {
-  display: block;
-  margin-top: .15em;
+  display: inline;
   color: var(--gold);
-  font-size: .72em;
   font-style: normal;
-  letter-spacing: -.045em;
 }
 
 .section {
   max-width: 1240px;
   margin: 0 auto;
-  padding: 0 24px 3rem;
+  padding: 2.5rem 24px 3rem;
 }
 
-.priority-row,
-.weekly-grid {
-  display: grid;
-  gap: 1rem;
-}
-.priority-row { grid-template-columns: minmax(0, 1.45fr) minmax(280px, .8fr); }
-.weekly-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 1rem; }
-.acard {
-  min-height: 210px;
-  padding: 1.25rem;
+.home-content { max-width: 1080px; margin: 0 auto; }
+.portal-link {
+  min-height: 92px;
+  padding: 1.1rem 1.35rem;
   display: flex;
-  flex-direction: column;
-  gap: .7rem;
-  color: var(--ink);
+  align-items: center;
+  gap: 1rem;
   background: var(--white);
   border: 1px solid var(--line);
-  border-top: 8px solid var(--navy);
-  border-radius: 4px;
-  box-shadow: 0 8px 24px rgba(3, 39, 84, .07);
+  border-left: 4px solid var(--gold);
+  border-radius: 10px;
+  color: var(--navy-dark);
   text-decoration: none;
-  position: relative;
-  overflow: hidden;
-  transition: transform .2s, box-shadow .2s;
+  transition: border-color .2s, box-shadow .2s;
 }
-.acard:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
-.acard.portal-card {
-  min-height: 150px;
-  border-top-color: var(--gold);
-}
-.acard.portal-card .acard-title { flex: 0; }
-.acard.placeholder { cursor: default; }
-.acard.placeholder:hover { transform: none; box-shadow: 0 8px 24px rgba(3, 39, 84, .07); }
-.acard.placeholder .acard-cta { color: #8a939c; }
-
-.detention-card {
-  min-height: 150px;
-  padding: 1.2rem 1.35rem;
-  background: #fff7f8;
-  border: 1px solid #e1b9c1;
-  border-left: 8px solid var(--red);
-  color: var(--ink);
-  cursor: default;
-}
-.detention-card:hover { transform: none; box-shadow: 0 8px 24px rgba(3, 39, 84, .07); }
-.detention-kicker {
-  margin: 0;
-  color: var(--red);
-  font-size: .7rem;
-  font-weight: 950;
-  letter-spacing: .11em;
+.portal-link:hover { border-color: #9eacba; border-left-color: var(--gold); box-shadow: 0 6px 18px rgba(3, 39, 84, .07); }
+.portal-eyebrow {
+  display: block;
+  margin-bottom: .25rem;
+  color: var(--muted);
+  font-size: .68rem;
+  font-weight: 900;
+  letter-spacing: .1em;
   text-transform: uppercase;
 }
-.detention-card h2 {
-  margin: .2rem 0 .15rem;
-  color: var(--navy-dark);
-  font-size: 1.45rem;
-  font-weight: 950;
-  line-height: 1;
-  letter-spacing: -.035em;
+.portal-title { color: var(--navy-dark); font-size: 1.2rem; font-weight: 850; }
+.portal-action {
+  margin-left: auto;
+  color: var(--navy);
+  font-size: .8rem;
+  font-weight: 900;
+  white-space: nowrap;
 }
-.detention-copy { margin: 0; color: var(--muted); font-size: .86rem; font-weight: 700; }
+.home-section-heading {
+  margin: 2.2rem 0 1rem;
+  color: var(--navy-dark);
+  font-size: 1.1rem;
+  font-weight: 850;
+}
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+.activity-card {
+  min-height: 224px;
+  padding: 1.45rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color .2s, box-shadow .2s, transform .2s;
+}
+.activity-card:hover { transform: translateY(-2px); border-color: #9eacba; box-shadow: 0 8px 22px rgba(3, 39, 84, .08); }
+.activity-card h3 {
+  margin: .2rem 0 .75rem;
+  color: var(--navy-dark);
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: -.025em;
+}
+.activity-card p { color: var(--muted); font-size: .9rem; font-weight: 600; line-height: 1.5; }
+.activity-card .activity-open {
+  margin-top: auto;
+  padding-top: 1.35rem;
+  color: var(--navy);
+  font-size: .78rem;
+  font-weight: 900;
+}
+.detention-notice {
+  margin-top: 1.15rem;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+}
+.detention-heading { color: var(--navy-dark); font-size: .95rem; font-weight: 900; }
+.detention-detail { margin-top: .2rem; color: var(--muted); font-size: .82rem; font-weight: 650; }
 .detention-names {
   display: flex;
   flex-wrap: wrap;
-  gap: .45rem;
-  margin: auto 0 0;
+  gap: .55rem;
+  margin: 0;
   padding: 0;
   list-style: none;
 }
 .detention-names li {
-  padding: .38rem .6rem;
+  padding: .4rem .7rem;
   color: var(--navy-dark);
-  background: var(--white);
-  border: 1px solid #d9aeb7;
-  border-radius: 999px;
+  background: #f3f5f7;
+  border: 1px solid #d9dfe5;
+  border-radius: 6px;
   font-size: .84rem;
-  font-weight: 950;
+  font-weight: 850;
 }
-.weekly-grid .acard:nth-child(2) { border-top-color: var(--gold); }
-.weekly-grid .acard:nth-child(3) { border-top-color: var(--red); }
-.acard-num {
-  color: var(--navy);
-  font-size: .72rem;
+.detention-label {
+  display: block;
+  margin-bottom: .25rem;
+  color: var(--red);
+  font-size: .65rem;
   font-weight: 950;
-  letter-spacing: .12em;
-}
-.acard-badge {
-  width: fit-content;
-  padding: .35rem .55rem;
-  color: var(--navy-dark);
-  background: var(--gold-soft);
-  font-size: .68rem;
-  font-weight: 950;
-  letter-spacing: .06em;
+  letter-spacing: .09em;
   text-transform: uppercase;
 }
-.acard-title {
-  color: var(--navy-dark);
-  font-size: clamp(1.3rem, 2vw, 1.8rem);
-  font-weight: 950;
-  line-height: 1;
-  letter-spacing: -.035em;
-  flex: 1;
+.portal-link:focus-visible, .activity-card:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
 }
-.acard-desc { color: var(--muted); font-size: .86rem; font-weight: 650; line-height: 1.4; }
-.acard-cta {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: .4rem;
-  color: var(--navy);
-  font-size: .72rem;
-  font-weight: 950;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-}
-.cta-line { width: 22px; height: 3px; background: var(--gold); transition: width .2s; }
-.acard:hover .cta-line { width: 36px; }
 
 .agenda-section { padding-top: 2rem; }
 .agenda-shell {
@@ -420,15 +391,16 @@ footer {
   .brand small { font-size: .58rem; }
   .tabs { width: 100%; }
   .tab { flex: 1; justify-content: center; }
-  .hero { min-height: 145px; padding: 1.75rem 1rem; }
-  .hero::before { width: 230px; height: 230px; right: -120px; top: -135px; border-width: 30px; }
-  .hero::after { width: 70%; height: 7px; }
-  .hero h1 { font-size: clamp(2.4rem, 12vw, 3.4rem); }
-  .section { padding-left: 1rem; padding-right: 1rem; }
-  .priority-row, .weekly-grid { grid-template-columns: 1fr; }
-  .weekly-grid { margin-top: .75rem; }
-  .acard { min-height: 175px; }
-  .acard.portal-card, .detention-card { min-height: 0; }
+  .hero { min-height: 110px; padding: 1.4rem 1rem; }
+  .hero h1 { font-size: clamp(1.85rem, 8vw, 2.7rem); }
+  .section { padding: 1.5rem 1rem 2.25rem; }
+  .portal-link { align-items: flex-start; flex-direction: column; gap: .7rem; }
+  .portal-action { margin-left: 0; }
+  .home-section-heading { margin-top: 1.7rem; }
+  .activity-grid { grid-template-columns: 1fr; }
+  .activity-card { min-height: 0; }
+  .activity-card .activity-open { padding-top: 1rem; }
+  .detention-notice { align-items: flex-start; flex-direction: column; }
   .agenda-shell { grid-template-columns: 1fr; }
   .agenda-main { padding: 2rem 1.5rem; }
   .agenda-main h2 { font-size: 3.35rem; }
@@ -443,6 +415,10 @@ footer {
   .admin-actions { align-items: stretch; flex-direction: column; }
   .admin-actions p { margin-right: 0; }
   footer { flex-direction: column; text-align: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
 }
 </style>
 </head>
@@ -459,54 +435,51 @@ footer {
 </header>
 
 <section class="hero">
-  <h1>MR. ROGERS'<em>Homebase</em></h1>
+  <h1>Mr. Rogers’ <em>Homebase</em></h1>
 </section>
 
 <section class="section" id="home" data-view="home">
-  <div class="priority-row">
-
-    <a class="acard portal-card" href="https://sites.google.com/ofarrellschool.org/homebase/Sophomore">
-      <div class="acard-title">CLASS OF 2029 PORTAL</div>
-      <div class="acard-desc">Open the Class of 2029 Sophomore Homebase page.</div>
-      <div class="acard-cta"><div class="cta-line"></div>Open Homebase Portal</div>
+  <div class="home-content">
+    <a class="portal-link" href="https://sites.google.com/ofarrellschool.org/homebase/Sophomore">
+      <span>
+        <span class="portal-eyebrow">Student portal</span>
+        <span class="portal-title">Class of 2029 Homebase</span>
+      </span>
+      <span class="portal-action">Open portal&nbsp; ↗</span>
     </a>
 
-    <article class="acard detention-card" aria-labelledby="detention-title">
-      <p class="detention-kicker">20-minute detention due</p>
-      <h2 id="detention-title">DETENTIONS</h2>
-      <p class="detention-copy">Students with a detention due:</p>
+    <h2 class="home-section-heading">Homebase links</h2>
+    <div class="activity-grid">
+      <a class="activity-card" href="https://script.google.com/a/macros/ofarrellschool.org/s/AKfycbyTlmf-qRkpWc_uRXry2GgxvPpMSDtVQNLqRIA299nyR0rSpZlJZ5dp6X6DLPGvi-kExQ/exec?mode=avid">
+        <h3>AVID Check</h3>
+        <p>Review your binder, planner, backpack, and school supplies.</p>
+        <span class="activity-open">Open AVID Check&nbsp; →</span>
+      </a>
+
+      <a class="activity-card" href="https://sites.google.com/ofarrellschool.org/homebase/ispe" aria-label="Open ISPE, Independent Study PE">
+        <h3>ISPE</h3>
+        <p>Open Independent Study PE information and activities.</p>
+        <span class="activity-open">Open ISPE&nbsp; →</span>
+      </a>
+
+      <a class="activity-card" href="https://script.google.com/a/macros/ofarrellschool.org/s/AKfycbyTlmf-qRkpWc_uRXry2GgxvPpMSDtVQNLqRIA299nyR0rSpZlJZ5dp6X6DLPGvi-kExQ/exec?mode=grades">
+        <h3>Grade Check</h3>
+        <p>Enter your current grades and check your progress in each class.</p>
+        <span class="activity-open">Open Grade Check&nbsp; →</span>
+      </a>
+    </div>
+
+    <aside class="detention-notice" aria-labelledby="detention-title">
+      <div>
+        <span class="detention-label">Reminder</span>
+        <h2 class="detention-heading" id="detention-title">Detentions</h2>
+        <p class="detention-detail">20-minute detention due for:</p>
+      </div>
       <ul class="detention-names" aria-label="Students with detention due">
         <li>Adrian</li>
         <li>Yvan</li>
       </ul>
-    </article>
-  </div>
-
-  <div class="weekly-grid">
-    <a class="acard" href="https://script.google.com/a/macros/ofarrellschool.org/s/AKfycbyTlmf-qRkpWc_uRXry2GgxvPpMSDtVQNLqRIA299nyR0rSpZlJZ5dp6X6DLPGvi-kExQ/exec?mode=avid">
-      <div class="acard-badge">Monday</div>
-      <div class="acard-num">01</div>
-      <div class="acard-title">AVID CHECK</div>
-      <div class="acard-desc">Check your physical binder, planner, backpack, and supplies for the week.</div>
-      <div class="acard-cta"><div class="cta-line"></div>Open AVID Check</div>
-    </a>
-
-    <a class="acard" href="https://sites.google.com/ofarrellschool.org/homebase/ispe" aria-label="Open ISPE, Independent Study PE">
-      <div class="acard-badge">Wednesday</div>
-      <div class="acard-num">02</div>
-      <div class="acard-title">ISPE</div>
-      <div class="acard-desc">Open Wednesday Independent Study PE information and activities.</div>
-      <div class="acard-cta"><div class="cta-line"></div>Open ISPE</div>
-    </a>
-
-    <a class="acard" href="https://script.google.com/a/macros/ofarrellschool.org/s/AKfycbyTlmf-qRkpWc_uRXry2GgxvPpMSDtVQNLqRIA299nyR0rSpZlJZ5dp6X6DLPGvi-kExQ/exec?mode=grades">
-      <div class="acard-badge">Friday</div>
-      <div class="acard-num">03</div>
-      <div class="acard-title">GRADE CHECK</div>
-      <div class="acard-desc">Update current class grades, reflect on progress, and revise your entry until the weekly deadline.</div>
-      <div class="acard-cta"><div class="cta-line"></div>Open Grade Check</div>
-    </a>
-
+    </aside>
   </div>
 </section>
 
