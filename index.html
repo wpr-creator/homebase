@@ -146,7 +146,7 @@ body {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
 }
 .acard {
@@ -167,10 +167,7 @@ body {
   transition: transform .2s, box-shadow .2s;
 }
 .acard:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
-.acard:nth-child(3) { border-top-color: var(--gold); }
-.acard:nth-child(4) { border-top-color: var(--red); }
 .acard.portal-card {
-  grid-column: 1 / -1;
   min-height: 115px;
   border-top-color: var(--gold);
 }
@@ -178,6 +175,23 @@ body {
 .acard.placeholder { cursor: default; }
 .acard.placeholder:hover { transform: none; box-shadow: 0 8px 24px rgba(3, 39, 84, .07); }
 .acard.placeholder .acard-cta { color: #8a939c; }
+
+.detention-card {
+  background: #a51732;
+  border-top-color: #a51732;
+  color: var(--white);
+  cursor: default;
+}
+.detention-card:hover { background: #a51732; transform: none; box-shadow: 0 8px 24px rgba(3, 39, 84, .07); }
+.detention-card .acard-badge { background: var(--navy); }
+.detention-card .acard-num,
+.detention-card .acard-cta,
+.detention-card .acard-title { color: var(--white); }
+.detention-card .cta-line { background: var(--white); }
+.detention-card .acard-desc { color: #fff0f2; }
+
+.acard:nth-child(4) { border-top-color: var(--gold); }
+.acard:nth-child(5) { border-top-color: var(--red); }
 .acard-num {
   color: var(--navy);
   font-size: .72rem;
@@ -422,6 +436,14 @@ footer {
       <div class="acard-desc">Open the Class of 2029 Sophomore Homebase page.</div>
       <div class="acard-cta"><div class="cta-line"></div>Open Homebase Portal</div>
     </a>
+
+    <article class="acard detention-card" aria-labelledby="detention-title">
+      <div class="acard-badge">Due</div>
+      <div class="acard-num">20 MINUTES</div>
+      <div class="acard-title" id="detention-title">DETENTIONS</div>
+      <div class="acard-desc">Adrian · Yvan</div>
+      <div class="acard-cta"><div class="cta-line"></div>Due for completion</div>
+    </article>
 
     <a class="acard" href="https://script.google.com/a/macros/ofarrellschool.org/s/AKfycbyTlmf-qRkpWc_uRXry2GgxvPpMSDtVQNLqRIA299nyR0rSpZlJZ5dp6X6DLPGvi-kExQ/exec?mode=avid">
       <div class="acard-badge">Monday</div>
