@@ -52,42 +52,23 @@ body {
 }
 
 .site-header {
-  min-height: 60px;
-  padding: .45rem max(24px, calc((100vw - 1240px) / 2));
+  min-height: 68px;
+  padding: .55rem max(24px, calc((100vw - 1240px) / 2));
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
+  justify-content: flex-start;
   background: var(--white);
   border-bottom: 1px solid var(--line);
-  position: sticky;
-  top: 0;
-  z-index: 50;
 }
 .brand {
   display: flex;
   align-items: center;
   color: var(--navy);
   text-decoration: none;
-  text-transform: uppercase;
+  font-family: Georgia, 'Times New Roman', serif;
 }
-.brand strong { display: block; font-size: 1.05rem; font-weight: 950; letter-spacing: .02em; }
-.brand small { display: block; margin-top: .15rem; color: var(--muted); font-size: .66rem; font-weight: 800; letter-spacing: .1em; }
-.tabs { display: flex; align-items: center; gap: .3rem; }
-.tab {
-  min-height: 38px;
-  padding: .55rem .85rem;
-  display: flex;
-  align-items: center;
-  border-bottom: 2px solid transparent;
-  color: var(--muted);
-  background: transparent;
-  font-size: .76rem;
-  font-weight: 900;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-.tab:hover, .tab[aria-current="page"] { color: var(--navy-dark); border-bottom-color: var(--gold); }
+.brand strong { display: block; font-size: 1.22rem; font-weight: 700; letter-spacing: -.025em; }
+.brand small { display: block; margin-top: .18rem; color: var(--muted); font-family: Arial, Helvetica, sans-serif; font-size: .72rem; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
 
 .hero {
   max-width: 1120px;
@@ -98,7 +79,7 @@ body {
 .hero p {
   margin-bottom: .55rem;
   color: #765b22;
-  font-size: .72rem;
+  font-size: .82rem;
   font-weight: 900;
   letter-spacing: .14em;
   text-transform: uppercase;
@@ -106,7 +87,7 @@ body {
 .hero h1 {
   color: var(--navy-dark);
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(3.2rem, 7vw, 5.4rem);
+  font-size: clamp(3.6rem, 8vw, 6.2rem);
   font-weight: 500;
   line-height: .98;
   letter-spacing: -.055em;
@@ -126,8 +107,8 @@ body {
 }
 .home-main { min-width: 0; }
 .portal-link {
-  min-height: 92px;
-  padding: .8rem 0 1.1rem;
+  min-height: 106px;
+  padding: .95rem 0 1.2rem;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -142,16 +123,16 @@ body {
   display: block;
   margin-bottom: .25rem;
   color: var(--muted);
-  font-size: .68rem;
+  font-size: .78rem;
   font-weight: 900;
   letter-spacing: .08em;
   text-transform: uppercase;
 }
-.portal-title { color: var(--navy-dark); font-size: 1.2rem; font-weight: 850; transition: color .2s; }
+.portal-title { color: var(--navy-dark); font-size: 1.48rem; font-weight: 850; transition: color .2s; }
 .portal-action {
   margin-left: auto;
   color: var(--navy);
-  font-size: .8rem;
+  font-size: .98rem;
   font-weight: 900;
   white-space: nowrap;
   transition: color .2s;
@@ -160,14 +141,14 @@ body {
   margin: 2rem 0 .7rem;
   color: var(--navy-dark);
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 1.65rem;
+  font-size: 1.9rem;
   font-weight: 500;
 }
 .activity-list { list-style: none; border-top: 1px solid var(--line); }
 .activity-list li { border-bottom: 1px solid var(--line); }
 .activity-row {
-  min-height: 88px;
-  padding: 1rem .3rem 1rem 0;
+  min-height: 102px;
+  padding: 1.05rem .3rem 1.05rem 0;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
@@ -180,13 +161,13 @@ body {
 .activity-row h3 {
   margin-bottom: .28rem;
   color: var(--navy-dark);
-  font-size: 1.12rem;
+  font-size: 1.4rem;
   font-weight: 850;
 }
-.activity-row p { color: var(--muted); font-size: .87rem; font-weight: 600; line-height: 1.45; }
+.activity-row p { color: var(--muted); font-size: 1rem; font-weight: 550; line-height: 1.45; }
 .activity-arrow {
   color: var(--navy);
-  font-size: 1.25rem;
+  font-size: 1.45rem;
   line-height: 1;
 }
 .detention-notice {
@@ -198,27 +179,27 @@ body {
   margin: .65rem 0 .3rem;
   color: var(--navy-dark);
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 1.55rem;
+  font-size: 1.85rem;
   font-weight: 500;
 }
-.detention-detail { margin-bottom: 1rem; color: var(--muted); font-size: .85rem; font-weight: 650; line-height: 1.45; }
+.detention-detail { margin-bottom: 1rem; color: var(--muted); font-size: .98rem; font-weight: 650; line-height: 1.45; }
 .detention-names { list-style: none; }
 .detention-names li {
   padding: .55rem 0;
   border-top: 1px solid var(--line);
   color: var(--ink);
-  font-size: .94rem;
+  font-size: 1.08rem;
   font-weight: 800;
 }
 .detention-label {
   display: block;
   color: var(--red);
-  font-size: .67rem;
+  font-size: .76rem;
   font-weight: 950;
   letter-spacing: .09em;
   text-transform: uppercase;
 }
-.portal-link:focus-visible, .activity-row:focus-visible {
+.brand:focus-visible, .portal-link:focus-visible, .activity-row:focus-visible {
   outline: 3px solid var(--gold);
   outline-offset: 3px;
 }
@@ -374,14 +355,13 @@ footer {
 .footer-right { font-size: .72rem; letter-spacing: .04em; }
 
 @media (max-width: 700px) {
-  .site-header { position: static; padding: .65rem 1rem; flex-wrap: wrap; }
+  .site-header { padding: .65rem 1rem; }
   .brand { min-width: 0; }
-  .brand strong { font-size: .78rem; }
-  .brand small { font-size: .58rem; }
-  .tabs { width: 100%; }
-  .tab { flex: 1; justify-content: center; }
+  .brand strong { font-size: 1.05rem; }
+  .brand small { font-size: .62rem; }
   .hero { padding: 2.2rem 1rem 1.6rem; }
-  .hero h1 { font-size: clamp(3rem, 14vw, 4rem); }
+  .hero p { font-size: .72rem; }
+  .hero h1 { font-size: clamp(3.2rem, 16vw, 4.5rem); }
   .section { padding: 1.5rem 1rem 2.25rem; }
   .portal-link { align-items: flex-start; flex-direction: column; gap: .7rem; }
   .portal-action { margin-left: 0; }
@@ -415,10 +395,6 @@ footer {
   <a class="brand" href="#home" aria-label="Mr. Rogers' Homebase home">
     <span><strong>Mr. Rogers' Homebase</strong><small>O'Farrell Charter School</small></span>
   </a>
-  <nav class="tabs" aria-label="Homebase pages">
-    <a class="tab" href="#home" data-tab="home">Home</a>
-    <a class="tab" href="#agenda" data-tab="agenda">Agenda</a>
-  </nav>
 </header>
 
 <section class="hero">
@@ -757,15 +733,9 @@ footer {
   }
 
   function route() {
-    const requested = location.hash.slice(1) || 'home';
-    const name = requested === 'agenda' ? 'agenda' : requested === 'hb-work' && siteContent.hbWorkOpen ? 'hb-work' : 'home';
-    if (requested === 'hb-work' && !siteContent.hbWorkOpen) history.replaceState(null, '', '#home');
-    document.querySelector('.hero').hidden = name !== 'home';
-    document.querySelectorAll('[data-view]').forEach(view => { view.hidden = view.dataset.view !== name; });
-    document.querySelectorAll('[data-tab]').forEach(tab => {
-      if (tab.dataset.tab === name) tab.setAttribute('aria-current', 'page');
-      else tab.removeAttribute('aria-current');
-    });
+    if (location.hash && location.hash !== '#home') history.replaceState(null, '', `${location.pathname}${location.search}`);
+    document.querySelector('.hero').hidden = false;
+    document.querySelectorAll('[data-view]').forEach(view => { view.hidden = view.id !== 'home'; });
   }
 
   function normalizeContent(input) {
