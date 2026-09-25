@@ -79,7 +79,7 @@ body {
   padding: .55rem .85rem;
   display: flex;
   align-items: center;
-  border-radius: 999px;
+  border-bottom: 2px solid transparent;
   color: var(--muted);
   background: transparent;
   font-size: .76rem;
@@ -87,149 +87,138 @@ body {
   text-decoration: none;
   text-transform: uppercase;
 }
-.tab:hover, .tab[aria-current="page"] { color: var(--white); background: var(--navy); }
+.tab:hover, .tab[aria-current="page"] { color: var(--navy-dark); border-bottom-color: var(--gold); }
 
 .hero {
-  min-height: 132px;
-  padding: 1.5rem max(24px, calc((100vw - 1240px) / 2));
-  display: flex;
-  align-items: center;
-  background: var(--navy-dark);
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 7vw, 5rem) 24px 2.2rem;
+  border-bottom: 1px solid var(--line);
+}
+.hero p {
+  margin-bottom: .55rem;
+  color: #765b22;
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .14em;
+  text-transform: uppercase;
 }
 .hero h1 {
-  max-width: 1040px;
-  color: var(--white);
-  font-size: clamp(2rem, 4.5vw, 3.4rem);
-  font-weight: 950;
-  line-height: 1.05;
-  letter-spacing: -.045em;
-}
-.hero h1 em {
-  display: inline;
-  color: var(--gold);
-  font-style: normal;
+  color: var(--navy-dark);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(3.2rem, 7vw, 5.4rem);
+  font-weight: 500;
+  line-height: .98;
+  letter-spacing: -.055em;
 }
 
 .section {
-  max-width: 1240px;
+  max-width: 1120px;
   margin: 0 auto;
-  padding: 2.5rem 24px 3rem;
+  padding: 2.2rem 24px 3rem;
 }
 
-.home-content { max-width: 1080px; margin: 0 auto; }
+.home-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 250px;
+  align-items: start;
+  gap: clamp(2rem, 6vw, 5rem);
+}
+.home-main { min-width: 0; }
 .portal-link {
   min-height: 92px;
-  padding: 1.1rem 1.35rem;
+  padding: .8rem 0 1.1rem;
   display: flex;
   align-items: center;
   gap: 1rem;
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-left: 4px solid var(--gold);
-  border-radius: 10px;
+  border-top: 3px solid var(--gold);
+  border-bottom: 1px solid var(--line);
   color: var(--navy-dark);
   text-decoration: none;
-  transition: border-color .2s, box-shadow .2s;
+  transition: color .2s;
 }
-.portal-link:hover { border-color: #9eacba; border-left-color: var(--gold); box-shadow: 0 6px 18px rgba(3, 39, 84, .07); }
+.portal-link:hover .portal-title, .portal-link:hover .portal-action { color: var(--red); }
 .portal-eyebrow {
   display: block;
   margin-bottom: .25rem;
   color: var(--muted);
   font-size: .68rem;
   font-weight: 900;
-  letter-spacing: .1em;
+  letter-spacing: .08em;
   text-transform: uppercase;
 }
-.portal-title { color: var(--navy-dark); font-size: 1.2rem; font-weight: 850; }
+.portal-title { color: var(--navy-dark); font-size: 1.2rem; font-weight: 850; transition: color .2s; }
 .portal-action {
   margin-left: auto;
   color: var(--navy);
   font-size: .8rem;
   font-weight: 900;
   white-space: nowrap;
+  transition: color .2s;
 }
 .home-section-heading {
-  margin: 2.2rem 0 1rem;
+  margin: 2rem 0 .7rem;
   color: var(--navy-dark);
-  font-size: 1.1rem;
-  font-weight: 850;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.65rem;
+  font-weight: 500;
 }
-.activity-grid {
+.activity-list { list-style: none; border-top: 1px solid var(--line); }
+.activity-list li { border-bottom: 1px solid var(--line); }
+.activity-row {
+  min-height: 88px;
+  padding: 1rem .3rem 1rem 0;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
   gap: 1rem;
-}
-.activity-card {
-  min-height: 224px;
-  padding: 1.45rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: 10px;
   color: var(--ink);
   text-decoration: none;
-  transition: border-color .2s, box-shadow .2s, transform .2s;
+  transition: padding .18s, color .18s;
 }
-.activity-card:hover { transform: translateY(-2px); border-color: #9eacba; box-shadow: 0 8px 22px rgba(3, 39, 84, .08); }
-.activity-card h3 {
-  margin: .2rem 0 .75rem;
+.activity-row:hover { padding-left: .5rem; color: var(--navy); }
+.activity-row h3 {
+  margin-bottom: .28rem;
   color: var(--navy-dark);
-  font-size: 1.35rem;
-  font-weight: 900;
-  letter-spacing: -.025em;
+  font-size: 1.12rem;
+  font-weight: 850;
 }
-.activity-card p { color: var(--muted); font-size: .9rem; font-weight: 600; line-height: 1.5; }
-.activity-card .activity-open {
-  margin-top: auto;
-  padding-top: 1.35rem;
+.activity-row p { color: var(--muted); font-size: .87rem; font-weight: 600; line-height: 1.45; }
+.activity-arrow {
   color: var(--navy);
-  font-size: .78rem;
-  font-weight: 900;
+  font-size: 1.25rem;
+  line-height: 1;
 }
 .detention-notice {
-  margin-top: 1.15rem;
-  padding: 1rem 1.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-left: 4px solid var(--red);
-  border-radius: 10px;
+  margin-top: .8rem;
+  padding: .2rem 0 .2rem 1.1rem;
+  border-left: 2px solid var(--red);
 }
-.detention-heading { color: var(--navy-dark); font-size: .95rem; font-weight: 900; }
-.detention-detail { margin-top: .2rem; color: var(--muted); font-size: .82rem; font-weight: 650; }
-.detention-names {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .55rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.detention-names li {
-  padding: .4rem .7rem;
+.detention-heading {
+  margin: .65rem 0 .3rem;
   color: var(--navy-dark);
-  background: #f3f5f7;
-  border: 1px solid #d9dfe5;
-  border-radius: 6px;
-  font-size: .84rem;
-  font-weight: 850;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.55rem;
+  font-weight: 500;
+}
+.detention-detail { margin-bottom: 1rem; color: var(--muted); font-size: .85rem; font-weight: 650; line-height: 1.45; }
+.detention-names { list-style: none; }
+.detention-names li {
+  padding: .55rem 0;
+  border-top: 1px solid var(--line);
+  color: var(--ink);
+  font-size: .94rem;
+  font-weight: 800;
 }
 .detention-label {
   display: block;
-  margin-bottom: .25rem;
   color: var(--red);
-  font-size: .65rem;
+  font-size: .67rem;
   font-weight: 950;
   letter-spacing: .09em;
   text-transform: uppercase;
 }
-.portal-link:focus-visible, .activity-card:focus-visible {
+.portal-link:focus-visible, .activity-row:focus-visible {
   outline: 3px solid var(--gold);
   outline-offset: 3px;
 }
@@ -391,16 +380,14 @@ footer {
   .brand small { font-size: .58rem; }
   .tabs { width: 100%; }
   .tab { flex: 1; justify-content: center; }
-  .hero { min-height: 110px; padding: 1.4rem 1rem; }
-  .hero h1 { font-size: clamp(1.85rem, 8vw, 2.7rem); }
+  .hero { padding: 2.2rem 1rem 1.6rem; }
+  .hero h1 { font-size: clamp(3rem, 14vw, 4rem); }
   .section { padding: 1.5rem 1rem 2.25rem; }
   .portal-link { align-items: flex-start; flex-direction: column; gap: .7rem; }
   .portal-action { margin-left: 0; }
   .home-section-heading { margin-top: 1.7rem; }
-  .activity-grid { grid-template-columns: 1fr; }
-  .activity-card { min-height: 0; }
-  .activity-card .activity-open { padding-top: 1rem; }
-  .detention-notice { align-items: flex-start; flex-direction: column; }
+  .home-content { grid-template-columns: 1fr; gap: 2rem; }
+  .detention-notice { margin-top: 0; padding: 1rem 0 0; border-top: 2px solid var(--red); border-left: 0; }
   .agenda-shell { grid-template-columns: 1fr; }
   .agenda-main { padding: 2rem 1.5rem; }
   .agenda-main h2 { font-size: 3.35rem; }
@@ -435,46 +422,48 @@ footer {
 </header>
 
 <section class="hero">
-  <h1>Mr. Rogers’ <em>Homebase</em></h1>
+  <p>Class of 2029 &nbsp;·&nbsp; O’Farrell Charter School</p>
+  <h1>Homebase</h1>
 </section>
 
 <section class="section" id="home" data-view="home">
   <div class="home-content">
-    <a class="portal-link" href="https://sites.google.com/ofarrellschool.org/homebase/Sophomore">
-      <span>
-        <span class="portal-eyebrow">Student portal</span>
-        <span class="portal-title">Class of 2029 Homebase</span>
-      </span>
-      <span class="portal-action">Open portal&nbsp; ↗</span>
-    </a>
-
-    <h2 class="home-section-heading">Homebase links</h2>
-    <div class="activity-grid">
-      <a class="activity-card" href="https://script.google.com/a/macros/ofarrellschool.org/s/AKfycbyTlmf-qRkpWc_uRXry2GgxvPpMSDtVQNLqRIA299nyR0rSpZlJZ5dp6X6DLPGvi-kExQ/exec?mode=avid">
-        <h3>AVID Check</h3>
-        <p>Review your binder, planner, backpack, and school supplies.</p>
-        <span class="activity-open">Open AVID Check&nbsp; →</span>
+    <main class="home-main">
+      <a class="portal-link" href="https://sites.google.com/ofarrellschool.org/homebase/Sophomore">
+        <span>
+          <span class="portal-eyebrow">Class of 2029</span>
+          <span class="portal-title">Student portal</span>
+        </span>
+        <span class="portal-action">Open portal&nbsp; ↗</span>
       </a>
 
-      <a class="activity-card" href="https://sites.google.com/ofarrellschool.org/homebase/ispe" aria-label="Open ISPE, Independent Study PE">
-        <h3>ISPE</h3>
-        <p>Open Independent Study PE information and activities.</p>
-        <span class="activity-open">Open ISPE&nbsp; →</span>
-      </a>
-
-      <a class="activity-card" href="https://script.google.com/a/macros/ofarrellschool.org/s/AKfycbyTlmf-qRkpWc_uRXry2GgxvPpMSDtVQNLqRIA299nyR0rSpZlJZ5dp6X6DLPGvi-kExQ/exec?mode=grades">
-        <h3>Grade Check</h3>
-        <p>Enter your current grades and check your progress in each class.</p>
-        <span class="activity-open">Open Grade Check&nbsp; →</span>
-      </a>
-    </div>
+      <h2 class="home-section-heading">Student links</h2>
+      <ul class="activity-list">
+        <li>
+          <a class="activity-row" href="https://script.google.com/a/macros/ofarrellschool.org/s/AKfycbyTlmf-qRkpWc_uRXry2GgxvPpMSDtVQNLqRIA299nyR0rSpZlJZ5dp6X6DLPGvi-kExQ/exec?mode=avid">
+            <span><h3>AVID Check</h3><p>Binder, planner, backpack, and school supplies</p></span>
+            <span class="activity-arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+        <li>
+          <a class="activity-row" href="https://sites.google.com/ofarrellschool.org/homebase/ispe" aria-label="Open ISPE, Independent Study PE">
+            <span><h3>ISPE</h3><p>Independent Study PE information and activities</p></span>
+            <span class="activity-arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+        <li>
+          <a class="activity-row" href="https://script.google.com/a/macros/ofarrellschool.org/s/AKfycbyTlmf-qRkpWc_uRXry2GgxvPpMSDtVQNLqRIA299nyR0rSpZlJZ5dp6X6DLPGvi-kExQ/exec?mode=grades">
+            <span><h3>Grade Check</h3><p>Enter your current grades and see your progress in each class</p></span>
+            <span class="activity-arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+      </ul>
+    </main>
 
     <aside class="detention-notice" aria-labelledby="detention-title">
-      <div>
-        <span class="detention-label">Reminder</span>
-        <h2 class="detention-heading" id="detention-title">Detentions</h2>
-        <p class="detention-detail">20-minute detention due for:</p>
-      </div>
+      <span class="detention-label">Detention</span>
+      <h2 class="detention-heading" id="detention-title">Detentions</h2>
+      <p class="detention-detail">20-minute detention due for:</p>
       <ul class="detention-names" aria-label="Students with detention due">
         <li>Adrian</li>
         <li>Yvan</li>
