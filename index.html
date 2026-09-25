@@ -175,15 +175,15 @@ body {
   border-left: 2px solid var(--red);
 }
 .detention-heading {
-  margin: .65rem 0 .3rem;
+  margin: 0 0 .75rem;
   color: var(--navy-dark);
   font-family: 'Barlow Condensed', 'Arial Narrow', Impact, sans-serif;
-  font-size: 2rem;
+  font-size: 1.9rem;
   font-weight: 700;
   letter-spacing: .04em;
+  line-height: 1.05;
   text-transform: uppercase;
 }
-.detention-detail { margin-bottom: 1rem; color: var(--muted); font-size: .98rem; font-weight: 650; line-height: 1.45; }
 .detention-names { list-style: none; }
 .detention-names li {
   padding: .55rem 0;
@@ -191,14 +191,6 @@ body {
   color: var(--ink);
   font-size: 1.15rem;
   font-weight: 800;
-}
-.detention-label {
-  display: block;
-  color: var(--red);
-  font-size: .76rem;
-  font-weight: 950;
-  letter-spacing: .09em;
-  text-transform: uppercase;
 }
 .portal-link:focus-visible, .activity-row:focus-visible {
   outline: 3px solid var(--gold);
@@ -415,9 +407,7 @@ body {
     </main>
 
     <aside class="detention-notice" aria-labelledby="detention-title">
-      <span class="detention-label">Detention</span>
-      <h2 class="detention-heading" id="detention-title">Detentions</h2>
-      <p class="detention-detail">20-minute detention due for:</p>
+      <h2 class="detention-heading" id="detention-title">20-Minute Detentions Due</h2>
       <ul class="detention-names" aria-label="Students with detention due">
         <li>Adrian</li>
         <li>Yvan</li>
