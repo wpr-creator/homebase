@@ -144,11 +144,13 @@ body {
   padding: 0 24px 3rem;
 }
 
-.grid {
+.priority-row,
+.weekly-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
 }
+.priority-row { grid-template-columns: minmax(0, 1.45fr) minmax(280px, .8fr); }
+.weekly-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 1rem; }
 .acard {
   min-height: 210px;
   padding: 1.25rem;
@@ -168,7 +170,7 @@ body {
 }
 .acard:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
 .acard.portal-card {
-  min-height: 115px;
+  min-height: 150px;
   border-top-color: var(--gold);
 }
 .acard.portal-card .acard-title { flex: 0; }
@@ -177,21 +179,51 @@ body {
 .acard.placeholder .acard-cta { color: #8a939c; }
 
 .detention-card {
-  background: #a51732;
-  border-top-color: #a51732;
-  color: var(--white);
+  min-height: 150px;
+  padding: 1.2rem 1.35rem;
+  background: #fff7f8;
+  border: 1px solid #e1b9c1;
+  border-left: 8px solid var(--red);
+  color: var(--ink);
   cursor: default;
 }
-.detention-card:hover { background: #a51732; transform: none; box-shadow: 0 8px 24px rgba(3, 39, 84, .07); }
-.detention-card .acard-badge { background: var(--navy); }
-.detention-card .acard-num,
-.detention-card .acard-cta,
-.detention-card .acard-title { color: var(--white); }
-.detention-card .cta-line { background: var(--white); }
-.detention-card .acard-desc { color: #fff0f2; }
-
-.acard:nth-child(4) { border-top-color: var(--gold); }
-.acard:nth-child(5) { border-top-color: var(--red); }
+.detention-card:hover { transform: none; box-shadow: 0 8px 24px rgba(3, 39, 84, .07); }
+.detention-kicker {
+  margin: 0;
+  color: var(--red);
+  font-size: .7rem;
+  font-weight: 950;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+.detention-card h2 {
+  margin: .2rem 0 .15rem;
+  color: var(--navy-dark);
+  font-size: 1.45rem;
+  font-weight: 950;
+  line-height: 1;
+  letter-spacing: -.035em;
+}
+.detention-copy { margin: 0; color: var(--muted); font-size: .86rem; font-weight: 700; }
+.detention-names {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+  margin: auto 0 0;
+  padding: 0;
+  list-style: none;
+}
+.detention-names li {
+  padding: .38rem .6rem;
+  color: var(--navy-dark);
+  background: var(--white);
+  border: 1px solid #d9aeb7;
+  border-radius: 999px;
+  font-size: .84rem;
+  font-weight: 950;
+}
+.weekly-grid .acard:nth-child(2) { border-top-color: var(--gold); }
+.weekly-grid .acard:nth-child(3) { border-top-color: var(--red); }
 .acard-num {
   color: var(--navy);
   font-size: .72rem;
@@ -393,8 +425,10 @@ footer {
   .hero::after { width: 70%; height: 7px; }
   .hero h1 { font-size: clamp(2.4rem, 12vw, 3.4rem); }
   .section { padding-left: 1rem; padding-right: 1rem; }
-  .grid { grid-template-columns: 1fr; }
+  .priority-row, .weekly-grid { grid-template-columns: 1fr; }
+  .weekly-grid { margin-top: .75rem; }
   .acard { min-height: 175px; }
+  .acard.portal-card, .detention-card { min-height: 0; }
   .agenda-shell { grid-template-columns: 1fr; }
   .agenda-main { padding: 2rem 1.5rem; }
   .agenda-main h2 { font-size: 3.35rem; }
@@ -429,7 +463,7 @@ footer {
 </section>
 
 <section class="section" id="home" data-view="home">
-  <div class="grid">
+  <div class="priority-row">
 
     <a class="acard portal-card" href="https://sites.google.com/ofarrellschool.org/homebase/Sophomore">
       <div class="acard-title">CLASS OF 2029 PORTAL</div>
@@ -438,13 +472,17 @@ footer {
     </a>
 
     <article class="acard detention-card" aria-labelledby="detention-title">
-      <div class="acard-badge">Due</div>
-      <div class="acard-num">20 MINUTES</div>
-      <div class="acard-title" id="detention-title">DETENTIONS</div>
-      <div class="acard-desc">Adrian · Yvan</div>
-      <div class="acard-cta"><div class="cta-line"></div>Due for completion</div>
+      <p class="detention-kicker">20-minute detention due</p>
+      <h2 id="detention-title">DETENTIONS</h2>
+      <p class="detention-copy">Students with a detention due:</p>
+      <ul class="detention-names" aria-label="Students with detention due">
+        <li>Adrian</li>
+        <li>Yvan</li>
+      </ul>
     </article>
+  </div>
 
+  <div class="weekly-grid">
     <a class="acard" href="https://script.google.com/a/macros/ofarrellschool.org/s/AKfycbyTlmf-qRkpWc_uRXry2GgxvPpMSDtVQNLqRIA299nyR0rSpZlJZ5dp6X6DLPGvi-kExQ/exec?mode=avid">
       <div class="acard-badge">Monday</div>
       <div class="acard-num">01</div>
