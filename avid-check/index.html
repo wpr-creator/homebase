@@ -5,21 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f4f7fb">
   <title>AVID Check Wheel | Mr. Rogers’ Homebase</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Source+Sans+3:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{--navy:#17365d;--navy-deep:#102946;--gold:#e3ad35;--red:#bb2649;--ink:#172638;--muted:#53667c;--paper:#fff;--canvas:#f4f7fb;--line:#d8e1ec;--green:#176b4d}
     *{box-sizing:border-box}
-    body{margin:0;min-height:100vh;background:var(--canvas);color:var(--ink);font:18px/1.5 Arial,Helvetica,sans-serif}
+    body{margin:0;min-height:100vh;background:var(--canvas);color:var(--ink);font:18px/1.5 'Source Sans 3',Arial,Helvetica,sans-serif}
     main{max-width:1080px;margin:0 auto;padding:clamp(20px,5vw,54px) 18px 48px;text-align:center}
     .home-link{display:inline-block;margin-bottom:18px;color:var(--navy);font-size:15px;font-weight:700;text-decoration-thickness:2px;text-underline-offset:4px}
-    h1{margin:0;color:var(--navy);font-size:clamp(30px,5vw,48px);font-weight:900;letter-spacing:.02em;line-height:1.1}
+    h1,h2,.wheel-label,.hub{font-family:'Barlow Condensed','Arial Narrow',Impact,sans-serif}
+    h1{margin:0;color:var(--navy);font-size:clamp(30px,5vw,48px);font-weight:800;letter-spacing:.035em;line-height:1.1}
     .intro{margin:10px auto 0;max-width:650px;color:var(--muted);font-size:clamp(16px,2.3vw,20px)}
     .wheel-stage{position:relative;width:min(80vw,490px);aspect-ratio:1;margin:24px auto 28px}
     .pointer{position:absolute;z-index:3;left:50%;top:-15px;transform:translateX(-50%);width:0;height:0;border-left:22px solid transparent;border-right:22px solid transparent;border-top:42px solid var(--red);filter:drop-shadow(0 3px 2px #0004)}
     .wheel{position:absolute;inset:0;border:11px solid var(--paper);border-radius:50%;background:conic-gradient(#e8f2ff 0deg 88deg,#fff 88deg 92deg,#b9e3d0 92deg 178deg,#fff 178deg 182deg,#f7d4dd 182deg 268deg,#fff 268deg 272deg,#f4c65c 272deg 358deg,#fff 358deg 360deg);box-shadow:0 0 0 4px var(--navy),0 14px 30px #10294625;transition:transform 4.4s cubic-bezier(.12,.72,.12,1)}
-    .wheel-label{position:absolute;width:42%;color:var(--navy);font-size:clamp(15px,2.2vw,21px);font-weight:900;line-height:1.1}
+    .wheel-label{position:absolute;width:42%;color:var(--navy);font-size:clamp(15px,2.2vw,21px);font-weight:800;line-height:1.1;letter-spacing:.025em}
     .wheel-label span{display:block;margin-bottom:7px;font-size:clamp(30px,5.4vw,52px)}
     .wheel-label.backpack{top:14%;left:5%}.wheel-label.binder{top:14%;right:5%}.wheel-label.chromebook{right:5%;bottom:13%}.wheel-label.planner{bottom:13%;left:5%}
-    .hub{position:absolute;z-index:2;top:50%;left:50%;display:grid;width:25%;aspect-ratio:1;place-items:center;transform:translate(-50%,-50%);border:6px solid var(--navy);border-radius:50%;background:var(--paper);color:var(--navy);font-size:clamp(14px,2vw,18px);font-weight:900}
+    .hub{position:absolute;z-index:2;top:50%;left:50%;display:grid;width:25%;aspect-ratio:1;place-items:center;transform:translate(-50%,-50%);border:6px solid var(--navy);border-radius:50%;background:var(--paper);color:var(--navy);font-size:clamp(14px,2vw,18px);font-weight:800;letter-spacing:.04em}
     button{min-height:64px;padding:16px 34px;border:0;border-radius:999px;background:var(--red);box-shadow:0 5px 0 #811a33;color:#fff;font:900 21px/1 Arial,Helvetica,sans-serif;cursor:pointer}
     button:hover{background:#a61e3f;transform:translateY(-1px)}button:disabled{background:#7d8792;box-shadow:none;cursor:wait;transform:none}
     button:focus-visible,a:focus-visible{outline:4px solid #2671ad;outline-offset:4px}
@@ -28,7 +32,7 @@
     .result-main{display:grid;grid-template-columns:190px minmax(0,1fr);gap:26px;align-items:center}
     .art{display:grid;min-height:175px;place-items:center;border-radius:14px;background:#fff}.art svg{width:148px;height:148px}
     .label{margin:0 0 5px;color:var(--muted);font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
-    h2{margin:0 0 8px;color:var(--navy);font-size:clamp(28px,4vw,40px);line-height:1.1}
+    h2{margin:0 0 8px;color:var(--navy);font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:.025em;line-height:1.1}
     .directions{margin:0;font-size:clamp(19px,2.5vw,23px)}
     .partner{margin:20px 0 0;padding-top:16px;border-top:1px solid #e7d9b1;color:var(--navy);font-size:17px;font-weight:750}
     .signal{margin:14px 0 0;padding:14px 16px;border-radius:10px;background:#fff;text-align:center;font-size:17px}
