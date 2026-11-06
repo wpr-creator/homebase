@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f4f7fb">
-  <title>AVID Check Wheel | Mr. Rogers’ Homebase</title>
+  <title>OCS HS ORGANIZATION CHECK</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Source+Sans+3:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,12 +12,12 @@
     :root{--navy:#17365d;--navy-deep:#102946;--gold:#e3ad35;--red:#bb2649;--ink:#172638;--muted:#53667c;--paper:#fff;--canvas:#f4f7fb;--line:#d8e1ec;--green:#176b4d}
     *{box-sizing:border-box}
     body{margin:0;min-height:100vh;background:var(--canvas);color:var(--ink);font:18px/1.5 'Source Sans 3',Arial,Helvetica,sans-serif}
-    main{max-width:1080px;margin:0 auto;padding:clamp(20px,5vw,54px) 18px 48px;text-align:center}
+    main{max-width:1200px;margin:0 auto;padding:clamp(20px,5vw,54px) 18px 48px;text-align:center}
     .home-link{display:inline-block;margin-bottom:18px;color:var(--navy);font-size:15px;font-weight:700;text-decoration-thickness:2px;text-underline-offset:4px}
     h1,h2,.wheel-label,.hub{font-family:'Barlow Condensed','Arial Narrow',Impact,sans-serif}
     h1{margin:0;color:var(--navy);font-size:clamp(30px,5vw,48px);font-weight:800;letter-spacing:.035em;line-height:1.1}
     .intro{margin:10px auto 0;max-width:650px;color:var(--muted);font-size:clamp(16px,2.3vw,20px)}
-    .wheel-stage{position:relative;width:min(80vw,490px);aspect-ratio:1;margin:24px auto 28px}
+    .wheel-stage{position:relative;width:min(100%,490px);aspect-ratio:1;margin:24px auto 28px}
     .pointer{position:absolute;z-index:3;left:50%;top:-15px;transform:translateX(-50%);width:0;height:0;border-left:22px solid transparent;border-right:22px solid transparent;border-top:42px solid var(--red);filter:drop-shadow(0 3px 2px #0004)}
     .wheel{position:absolute;inset:0;border:11px solid var(--paper);border-radius:50%;background:conic-gradient(#e8f2ff 0deg 88deg,#fff 88deg 92deg,#b9e3d0 92deg 178deg,#fff 178deg 182deg,#f7d4dd 182deg 268deg,#fff 268deg 272deg,#f4c65c 272deg 358deg,#fff 358deg 360deg);box-shadow:0 0 0 4px var(--navy),0 14px 30px #10294625;transition:transform 4.4s cubic-bezier(.12,.72,.12,1)}
     .wheel-label{position:absolute;width:42%;color:var(--navy);font-size:clamp(15px,2.2vw,21px);font-weight:800;line-height:1.1;letter-spacing:.025em}
@@ -27,15 +27,19 @@
     button{min-height:64px;padding:16px 34px;border:0;border-radius:999px;background:var(--red);box-shadow:0 5px 0 #811a33;color:#fff;font:900 21px/1 Arial,Helvetica,sans-serif;cursor:pointer}
     button:hover{background:#a61e3f;transform:translateY(-1px)}button:disabled{background:#7d8792;box-shadow:none;cursor:wait;transform:none}
     button:focus-visible,a:focus-visible{outline:4px solid #2671ad;outline-offset:4px}
-    .result{max-width:820px;margin:28px auto 0;padding:clamp(18px,3.5vw,32px);border:2px solid #f0cf75;border-radius:18px;background:#fff9e9;text-align:left}
+    .check-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,52px);align-items:center;margin-top:26px}
+    .wheel-column,.result-column{min-width:0}
+    .result,.ready{margin:0;padding:24px 0;border-top:7px solid var(--gold);text-align:left}
+    .ready[hidden]{display:none}
     .result[hidden]{display:none}
-    .result-main{display:grid;grid-template-columns:190px minmax(0,1fr);gap:26px;align-items:center}
-    .art{display:grid;min-height:175px;place-items:center;border-radius:14px;background:#fff}.art svg{width:148px;height:148px}
+    .result-main{display:grid;grid-template-columns:1fr;gap:16px;align-items:center}
+    .art{display:grid;min-height:100px;place-items:start}.art svg{width:105px;height:105px}
     .label{margin:0 0 5px;color:var(--muted);font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
     h2{margin:0 0 8px;color:var(--navy);font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:.025em;line-height:1.1}
     .directions{margin:0;font-size:clamp(19px,2.5vw,23px)}
     .partner{margin:20px 0 0;padding-top:16px;border-top:1px solid #e7d9b1;color:var(--navy);font-size:17px;font-weight:750}
     .signal{margin:14px 0 0;padding:14px 16px;border-radius:10px;background:#fff;text-align:center;font-size:17px}
+    @media(max-width:800px){.check-layout{grid-template-columns:1fr}.result-column{max-width:600px;width:100%;margin:auto}.wheel-stage{width:min(86vw,490px)}}
     @media(max-width:620px){main{padding-top:20px}.wheel-stage{width:min(86vw,390px);margin-top:28px}.wheel-label{font-size:clamp(12px,3.2vw,17px)}.result-main{grid-template-columns:1fr;text-align:center;gap:16px}.art{min-height:140px}.art svg{width:125px;height:125px}.result{text-align:center;padding:18px}.partner{font-size:16px}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
   </style>
@@ -43,8 +47,10 @@
 <body>
   <main>
     <a class="home-link" href="../">← Homebase</a>
-    <h1>AVID CLASS CHECK</h1>
+    <h1>OCS HS ORGANIZATION CHECK</h1>
     <p class="intro">Spin the wheel to choose today’s whole-class check. Have a partner confirm your check.</p>
+    <div class="check-layout">
+    <div class="wheel-column">
     <div class="wheel-stage" aria-label="Wheel with four class checks">
       <div class="pointer" aria-hidden="true"></div>
       <div class="wheel" id="wheel" aria-hidden="true">
@@ -56,6 +62,9 @@
       <div class="hub" aria-hidden="true">AVID</div>
     </div>
     <button id="spin" type="button">🎡 SPIN THE WHEEL</button>
+    </div>
+    <div class="result-column">
+    <section id="ready" class="ready"><p class="label">Today’s check</p><h2>Spin to choose a check</h2><p class="directions">The selected activity and partner directions will appear here.</p></section>
     <section id="result" class="result" aria-live="polite" aria-atomic="true" hidden>
       <div class="result-main">
         <div class="art" id="art" aria-hidden="true"></div>
@@ -64,6 +73,8 @@
       <p class="partner" id="partner"></p>
       <p class="signal">👍 <strong>Thumbs up:</strong> Met expectations &nbsp;·&nbsp; <strong>No thumbs up:</strong> Needs follow-up</p>
     </section>
+    </div>
+    </div>
   </main>
   <script>
     const tasks=[
@@ -74,10 +85,10 @@
     ];
     const wheel=document.getElementById('wheel'),button=document.getElementById('spin'),result=document.getElementById('result');let rotation=0;
     button.addEventListener('click',()=>{
-      button.disabled=true;button.textContent='🎡 SPINNING…';result.hidden=true;
+      button.disabled=true;button.textContent='🎡 SPINNING…';result.hidden=true;document.getElementById('ready').hidden=false;
       const task=tasks[Math.floor(Math.random()*tasks.length)],turns=5+Math.floor(Math.random()*3);
-      rotation+=turns*360+(360-task.angle);wheel.style.transform=`rotate(${rotation}deg)`;
-      window.setTimeout(()=>{document.getElementById('art').innerHTML=task.art;document.getElementById('task').textContent=task.name;document.getElementById('directions').textContent=task.directions;document.getElementById('partner').textContent=task.partner;result.hidden=false;result.scrollIntoView({behavior:'smooth',block:'center'});button.disabled=false;button.textContent='🎡 SPIN AGAIN'},4500);
+      rotation+=turns*360+((360-task.angle-rotation%360+360)%360);wheel.style.transform=`rotate(${rotation}deg)`;
+      window.setTimeout(()=>{document.getElementById('art').innerHTML=task.art;document.getElementById('task').textContent=task.name;document.getElementById('directions').textContent=task.directions;document.getElementById('partner').textContent=task.partner;document.getElementById('ready').hidden=true;result.hidden=false;button.disabled=false;button.textContent='🎡 SPIN AGAIN'},4500);
     });
   </script>
 </body>
