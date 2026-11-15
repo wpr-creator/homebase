@@ -13,3 +13,5 @@ Use the editorial style of https://wpr-creator.github.io/APG/ with Homebase's O'
 `homebase-theme.css` is shared by the homepage, high school organization/AVID check, elementary organization activity, and end-of-year quote project. Link it after page-specific styles. Preserve activity behavior, content, and status colors.
 
 The separate Apps Script Grade Check uses the same fonts and palette in its embedded HTML. Its classroom display retains the requested brown desks, amber-yellow bulbs, dark pegboard, and status-only access rules; surrounding typography follows this identity. Update the Apps Script HTML when changing the shared identity so both experiences stay consistent.
+
+Branding is text-only: do not reintroduce a school logo on any page. Detention subheadings use Newsreader; descriptions use Public Sans. Classroom names must stay on one line, using container-relative sizing. The classroom display uses flat desk silhouettes and restrained amber lights rather than beveled toy graphics.
