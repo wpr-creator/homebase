@@ -42,7 +42,28 @@
     @media(max-width:620px){main{padding-top:20px}.wheel-stage{width:min(86vw,390px);margin-top:28px}.wheel-label{font-size:clamp(12px,3.2vw,17px)}.result-main{grid-template-columns:1fr;text-align:center;gap:16px}.art{min-height:140px}.art svg{width:125px;height:125px}.result{text-align:center;padding:18px}.partner{font-size:16px}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
   </style>
-<link rel="stylesheet" href="../homebase-theme.css?v=20261115-uniform-2">
+<link rel="stylesheet" href="../homebase-theme.css?v=20261115-avid-repair">
+<style>
+    /* Keep the activity readable at classroom and laptop sizes. */
+    body.hb-site[data-hb-page='avid'] main{max-width:1160px;padding:28px 24px 40px}
+    body.hb-site[data-hb-page='avid'] h1{font-size:clamp(32px,4vw,50px);line-height:1.08;max-width:850px}
+    body.hb-site[data-hb-page='avid'] .intro{font-size:18px;max-width:680px}
+    .check-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;margin-top:32px;align-items:center}
+    .wheel-stage{width:min(100%,440px);margin:22px auto 28px}
+    .wheel-label{width:38%;font-size:16px;line-height:1.15;transform:translate(-50%,-50%) rotate(var(--turn,0deg));transition:transform 4.4s cubic-bezier(.12,.72,.12,1);letter-spacing:0}
+    .wheel-label span{font-size:34px;margin-bottom:8px}
+    .wheel-label.backpack{top:28%;left:28%;right:auto;bottom:auto}
+    .wheel-label.binder{top:28%;left:72%;right:auto;bottom:auto}
+    .wheel-label.chromebook{top:72%;left:72%;right:auto;bottom:auto}
+    .wheel-label.planner{top:72%;left:28%;right:auto;bottom:auto}
+    body.hb-site[data-hb-page='avid'] .result,body.hb-site[data-hb-page='avid'] .ready{padding:26px}
+    body.hb-site[data-hb-page='avid'] h2{font-size:clamp(28px,3vw,36px);line-height:1.1;text-transform:none}
+    .art{min-height:0}.art svg{width:72px;height:72px}
+    .directions{font-size:20px;line-height:1.5}.partner{font-size:16px;line-height:1.55}.signal{font-size:14px;line-height:1.5;padding:14px 10px}
+    .wheel-column{text-align:center}button{font-size:17px;min-height:52px;padding:15px 26px}
+    @media(max-width:800px){.check-layout{grid-template-columns:1fr;gap:28px}.wheel-stage{width:min(100%,390px)}.result-column{max-width:560px}body.hb-site[data-hb-page='avid'] main{padding:24px 20px 36px}}
+    @media(max-width:420px){.wheel-label{font-size:12px}.wheel-label span{font-size:27px}.pointer{border-left-width:16px;border-right-width:16px;border-top-width:32px}.result-main{text-align:left}.art{place-items:start}body.hb-site[data-hb-page='avid'] .result{padding:22px}.wheel{border-width:8px}}
+</style>
 </head>
 <body class="hb-site" data-hb-page="avid">
   <main>
@@ -88,7 +109,8 @@
       button.disabled=true;button.textContent='🎡 SPINNING…';result.hidden=true;document.getElementById('ready').hidden=false;
       const task=tasks[Math.floor(Math.random()*tasks.length)],turns=5+Math.floor(Math.random()*3);
       rotation+=turns*360+((360-task.angle-rotation%360+360)%360);wheel.style.transform=`rotate(${rotation}deg)`;
-      window.setTimeout(()=>{document.getElementById('art').innerHTML=task.art;document.getElementById('task').textContent=task.name;document.getElementById('directions').textContent=task.directions;document.getElementById('partner').textContent=task.partner;document.getElementById('ready').hidden=true;result.hidden=false;button.disabled=false;button.textContent='🎡 SPIN AGAIN'},4500);
+      wheel.querySelectorAll('.wheel-label').forEach(label=>label.style.setProperty('--turn',`${-rotation}deg`));
+      window.setTimeout(()=>{document.getElementById('art').innerHTML=task.art;document.getElementById('task').textContent=task.name.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());document.getElementById('directions').textContent=task.directions;document.getElementById('partner').textContent=task.partner;document.getElementById('ready').hidden=true;result.hidden=false;button.disabled=false;button.textContent='🎡 SPIN AGAIN'},4500);
     });
   </script>
 </body>
