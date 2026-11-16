@@ -65,7 +65,12 @@
     @media(max-width:800px){.check-layout{grid-template-columns:1fr;gap:28px}.wheel-stage{width:min(100%,390px)}.result-column{max-width:560px}body.hb-site[data-hb-page='avid'] main{padding:24px 20px 36px}}
     @media(max-width:420px){.wheel-label{font-size:12px}.wheel-label span{font-size:27px}.pointer{border-left-width:16px;border-right-width:16px;border-top-width:32px}.result-main{text-align:left}.art{place-items:start}body.hb-site[data-hb-page='avid'] .result{padding:22px}.wheel{border-width:8px}}
 </style>
-</head>
+<style>
+.wheel,.wheel-label{transition:none!important}
+.pointer{transform-origin:50% 0}
+.spoke-peg{position:absolute;z-index:1;width:10px;height:10px;border:2px solid var(--navy);border-radius:50%;background:var(--gold);transform:translate(-50%,-50%);pointer-events:none}
+.sound-control{display:block;margin:18px auto 0;font-size:15px;color:var(--navy);cursor:pointer}.sound-control input{width:18px;height:18px;vertical-align:middle;accent-color:var(--navy)}
+</style></head>
 <body class="hb-site" data-hb-page="avid">
   <main>
     <a class="home-link" href="../">← Homebase</a>
@@ -84,6 +89,7 @@
       <div class="hub" aria-hidden="true">AVID</div>
     </div>
     <button id="spin" type="button">🎡 SPIN THE WHEEL</button>
+<label class="sound-control"><input id="sound" type="checkbox" checked> Sound on</label>
     </div>
     <div class="result-column">
     <section id="ready" class="ready"><p class="label">Today’s check</p><h2>Spin to choose a check</h2><p class="directions">The selected activity and partner directions will appear here.</p></section>
@@ -105,14 +111,20 @@
       {name:'CHROMEBOOK CHARGE',directions:'Check your Chromebook battery. It should be charged above 50%.',partner:'Partner check: Have your classmate show the battery level on the screen. If it is at or below 50%, make a plan to charge it.',angle:135,art:'<svg viewBox="0 0 160 160"><rect x="34" y="28" width="92" height="82" rx="8" fill="#e7f1ff" stroke="#17365d" stroke-width="7"/><path d="M20 121h120l-10 13H30l-10-13Z" fill="#f4c65c" stroke="#17365d" stroke-width="7"/><text x="80" y="78" text-anchor="middle" font-family="Arial" font-weight="900" font-size="22" fill="#17365d">50%</text></svg>'},
       {name:'PLANNER CHECK',directions:'Show Mr. Rogers your planner.',partner:'Partner check: Make sure your planner is with you and ready to use. You are not being checked on whether another teacher posted an agenda.',angle:225,art:'<svg viewBox="0 0 160 160"><rect x="28" y="34" width="104" height="100" rx="12" fill="#f7d4dd" stroke="#17365d" stroke-width="7"/><path d="M28 61h104M54 25v20m52-20v20" stroke="#17365d" stroke-width="8" stroke-linecap="round"/><path d="m51 88 10 10 19-21m7 18h22m-57 18h57" fill="none" stroke="#176b4d" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>'}
     ];
-    const wheel=document.getElementById('wheel'),button=document.getElementById('spin'),result=document.getElementById('result');let rotation=0;
-    button.addEventListener('click',()=>{
-      button.disabled=true;button.textContent='🎡 SPINNING…';result.hidden=true;document.getElementById('ready').hidden=false;
-      const task=tasks[Math.floor(Math.random()*tasks.length)],turns=5+Math.floor(Math.random()*3);
-      rotation+=turns*360+((360-task.angle-rotation%360+360)%360);wheel.style.transform=`rotate(${rotation}deg)`;
-      wheel.querySelectorAll('.wheel-label').forEach(label=>label.style.setProperty('--turn',`${-rotation}deg`));
-      window.setTimeout(()=>{document.getElementById('art').innerHTML=task.art;document.getElementById('task').textContent=task.name.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());document.getElementById('directions').textContent=task.directions;document.getElementById('partner').textContent=task.partner;document.getElementById('ready').hidden=true;result.hidden=false;button.disabled=false;button.textContent='🎡 SPIN AGAIN'},4500);
+    const wheel=document.getElementById('wheel'),button=document.getElementById('spin'),result=document.getElementById('result'),sound=document.getElementById('sound'),pointer=document.querySelector('.pointer');
+    let rotation=0,spinning=false,audioContext=null,lastClick=-Infinity;
+    for(let i=0;i<24;i++){const peg=document.createElement('span');peg.className='spoke-peg';peg.setAttribute('aria-hidden','true');const a=i*15*Math.PI/180;peg.style.left=(50+49*Math.sin(a))+'%';peg.style.top=(50-49*Math.cos(a))+'%';wheel.append(peg)}
+    function initAudio(){try{const Audio=window.AudioContext||window.webkitAudioContext;if(Audio&&!audioContext)audioContext=new Audio();if(audioContext&&audioContext.state==='suspended')audioContext.resume().catch(()=>{})}catch(error){audioContext=null}}
+    function tone(frequency,duration,volume,type='sine',delay=0){if(!sound.checked||!audioContext||audioContext.state!=='running')return;try{const now=audioContext.currentTime+delay,osc=audioContext.createOscillator(),gain=audioContext.createGain();osc.type=type;osc.frequency.setValueAtTime(frequency,now);gain.gain.setValueAtTime(volume,now);gain.gain.exponentialRampToValueAtTime(.001,now+duration);osc.connect(gain);gain.connect(audioContext.destination);osc.start(now);osc.stop(now+duration);osc.onended=()=>{osc.disconnect();gain.disconnect()}}catch(error){}}
+    function clickSpoke(now,reduced){if(!reduced)pointer.animate([{transform:'translateX(-50%) rotate(-15deg)'},{transform:'translateX(-50%) rotate(0deg)'}],{duration:85,easing:'ease-out'});if(now-lastClick>28){tone(1250,.025,.045,'triangle');lastClick=now}}
+    function renderRotation(value){wheel.style.transform='rotate('+value+'deg)';wheel.querySelectorAll('.wheel-label').forEach(label=>label.style.setProperty('--turn',-value+'deg'))}
+    function showResult(task){document.getElementById('art').innerHTML=task.art;document.getElementById('task').textContent=task.name.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());document.getElementById('directions').textContent=task.directions;document.getElementById('partner').textContent=task.partner;document.getElementById('ready').hidden=true;result.hidden=false;spinning=false;button.disabled=false;button.textContent='🎡 SPIN AGAIN';tone(523.25,.25,.07);tone(659.25,.3,.07,'sine',.12);tone(783.99,.45,.07,'sine',.24)}
+    button.addEventListener('click',()=>{if(spinning)return;spinning=true;initAudio();button.disabled=true;button.textContent='🎡 SPINNING…';result.hidden=true;document.getElementById('ready').hidden=false;
+      const task=tasks[Math.floor(Math.random()*tasks.length)],turns=20+Math.floor(Math.random()*5),from=rotation,target=(360-task.angle)%360,to=from+turns*360+((target-from%360+360)%360),reduced=matchMedia('(prefers-reduced-motion: reduce)').matches,duration=reduced?200:10000,start=performance.now();let lastSpoke=Math.floor(from/15);
+      function frame(now){const progress=Math.min(1,(now-start)/duration),ease=1-Math.pow(1-progress,4),value=from+(to-from)*ease;renderRotation(value);const spoke=Math.floor(value/15);if(spoke!==lastSpoke){if(!reduced)clickSpoke(now,false);lastSpoke=spoke}if(progress<1){requestAnimationFrame(frame)}else{rotation=to;renderRotation(rotation);showResult(task)}}
+      requestAnimationFrame(frame);
     });
   </script>
 </body>
 </html>
+
