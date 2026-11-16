@@ -70,6 +70,35 @@
 .pointer{transform-origin:50% 0}
 .spoke-peg{position:absolute;z-index:1;width:10px;height:10px;border:2px solid var(--navy);border-radius:50%;background:var(--gold);transform:translate(-50%,-50%);pointer-events:none}
 .sound-control{display:block;margin:18px auto 0;font-size:15px;color:var(--navy);cursor:pointer}.sound-control input{width:18px;height:18px;vertical-align:middle;accent-color:var(--navy)}
+</style><style>
+body.hb-site[data-hb-page="avid"]{background:#fff}
+body.hb-site[data-hb-page="avid"] main{max-width:1240px;padding:32px 30px 48px}
+body.hb-site[data-hb-page="avid"] h1{font-weight:500;font-size:clamp(35px,4.6vw,58px);letter-spacing:-.045em;max-width:1000px}
+body.hb-site[data-hb-page="avid"] .intro{font-size:17px;line-height:1.6;max-width:720px;color:#526174}
+.check-layout{gap:60px!important;padding-top:12px}
+.wheel-stage{width:min(100%,450px);isolation:isolate}
+.wheel-stage::before{content:"";position:absolute;inset:-13px;border:1px solid #bdcad8;border-radius:50%;pointer-events:none}
+body.hb-site[data-hb-page="avid"] .wheel{border:9px solid #fff;box-shadow:0 0 0 2px #17365d;background:conic-gradient(#e8f1fa 0deg 88deg,#fff 88deg 92deg,#e0e9e7 92deg 178deg,#fff 178deg 182deg,#f3e7df 182deg 268deg,#fff 268deg 272deg,#f6edcf 272deg 358deg,#fff 358deg 360deg)}
+.wheel-label{font-family:'Public Sans',Arial,sans-serif;font-size:13px!important;font-weight:700;letter-spacing:.07em!important}
+.wheel-label span{display:grid;place-items:center;margin:0 auto 10px;width:44px;height:44px}
+.wheel-label svg{width:44px;height:44px}
+.wheel-label.selected{color:#102946;text-decoration:underline;text-decoration-color:#d6a62f;text-decoration-thickness:3px;text-underline-offset:7px}
+body.hb-site[data-hb-page="avid"] .hub{width:26%;border:2px solid #17365d;box-shadow:inset 0 0 0 6px #fff,inset 0 0 0 7px #e3ad35;background:#fff;font:500 23px 'Newsreader',Georgia,serif;letter-spacing:.03em}
+.hub small{display:block;font:500 9px 'IBM Plex Mono',monospace;letter-spacing:.16em;margin-top:5px}
+.hub>span{text-align:center}
+.spoke-peg{width:7px;height:7px;border-width:1px;background:#d6ad50}
+.pointer{border-left-width:15px;border-right-width:15px;border-top-width:31px;top:-14px;filter:none}
+body.hb-site[data-hb-page="avid"] .result,body.hb-site[data-hb-page="avid"] .ready{background:#f7f9fc;border:1px solid #d8e1ec;border-top:4px solid #e3ad35;padding:30px 32px}
+body.hb-site[data-hb-page="avid"] h2{font:500 clamp(32px,3.5vw,44px)/1.05 'Newsreader',Georgia,serif;letter-spacing:-.035em}
+body.hb-site[data-hb-page="avid"] .art svg{width:64px;height:64px}
+.label{font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.12em;color:#53667c;margin-bottom:12px}
+.partner{font-weight:400!important;border-top:1px solid #d8e1ec;font-size:16px;line-height:1.65}
+.signal{border-top:1px solid #d8e1ec!important;background:transparent!important;padding:18px 0 0!important;margin-top:20px;font-size:13px!important;text-align:left}
+body.hb-site[data-hb-page="avid"] button{background:#17365d;border:1px solid #17365d;border-bottom:3px solid #e3ad35;box-shadow:none;border-radius:2px;color:#fff;padding:15px 30px;font:500 13px 'IBM Plex Mono',monospace;letter-spacing:.1em}
+body.hb-site[data-hb-page="avid"] button:hover{background:#102946}
+body.hb-site[data-hb-page="avid"] button:disabled{background:#53667c;border-color:#53667c}
+.landing-mark{position:absolute;left:50%;top:0;width:3px;height:12px;background:#e3ad35;z-index:5;pointer-events:none;transform-origin:center}
+@media(max-width:800px){.check-layout{gap:36px!important}.wheel-stage{width:min(82vw,430px)}body.hb-site[data-hb-page="avid"] main{padding:24px 20px 36px}body.hb-site[data-hb-page="avid"] .result,body.hb-site[data-hb-page="avid"] .ready{padding:24px}}
 </style></head>
 <body class="hb-site" data-hb-page="avid">
   <main>
@@ -86,9 +115,9 @@
         <div class="wheel-label chromebook"><span>💻</span>CHROMEBOOK</div>
         <div class="wheel-label planner"><span>📅</span>PLANNER</div>
       </div>
-      <div class="hub" aria-hidden="true">AVID</div>
+      <div class="hub" aria-hidden="true"><span>OCS<small>HIGH SCHOOL</small></span></div>
     </div>
-    <button id="spin" type="button">🎡 SPIN THE WHEEL</button>
+    <button id="spin" type="button">SPIN THE WHEEL</button>
 
     </div>
     <div class="result-column">
@@ -111,6 +140,7 @@
       {name:'CHROMEBOOK CHARGE',directions:'Check your Chromebook battery. It should be charged above 50%.',partner:'Partner check: Have your classmate show the battery level on the screen. If it is at or below 50%, make a plan to charge it.',angle:135,art:'<svg viewBox="0 0 160 160"><rect x="34" y="28" width="92" height="82" rx="8" fill="#e7f1ff" stroke="#17365d" stroke-width="7"/><path d="M20 121h120l-10 13H30l-10-13Z" fill="#f4c65c" stroke="#17365d" stroke-width="7"/><text x="80" y="78" text-anchor="middle" font-family="Arial" font-weight="900" font-size="22" fill="#17365d">50%</text></svg>'},
       {name:'PLANNER CHECK',directions:'Show Mr. Rogers your planner.',partner:'Partner check: Make sure your planner is with you and ready to use. You are not being checked on whether another teacher posted an agenda.',angle:225,art:'<svg viewBox="0 0 160 160"><rect x="28" y="34" width="104" height="100" rx="12" fill="#f7d4dd" stroke="#17365d" stroke-width="7"/><path d="M28 61h104M54 25v20m52-20v20" stroke="#17365d" stroke-width="8" stroke-linecap="round"/><path d="m51 88 10 10 19-21m7 18h22m-57 18h57" fill="none" stroke="#176b4d" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>'}
     ];
+    const wheelIcons=[['backpack',0],['binder',1],['chromebook',2],['planner',3]];wheelIcons.forEach(([name,index])=>document.querySelector('.wheel-label.'+name+' span').innerHTML=tasks[index].art);
     const wheel=document.getElementById('wheel'),button=document.getElementById('spin'),result=document.getElementById('result'),pointer=document.querySelector('.pointer');
     let rotation=0,spinning=false,audioContext=null,lastClick=-Infinity;
     for(let i=0;i<24;i++){const peg=document.createElement('span');peg.className='spoke-peg';peg.setAttribute('aria-hidden','true');const a=i*15*Math.PI/180;peg.style.left=(50+49*Math.sin(a))+'%';peg.style.top=(50-49*Math.cos(a))+'%';wheel.append(peg)}
@@ -118,8 +148,9 @@
     function tone(frequency,duration,volume,type='sine',delay=0){if(!audioContext||audioContext.state!=='running')return;try{const now=audioContext.currentTime+delay,osc=audioContext.createOscillator(),gain=audioContext.createGain();osc.type=type;osc.frequency.setValueAtTime(frequency,now);gain.gain.setValueAtTime(volume,now);gain.gain.exponentialRampToValueAtTime(.001,now+duration);osc.connect(gain);gain.connect(audioContext.destination);osc.start(now);osc.stop(now+duration);osc.onended=()=>{osc.disconnect();gain.disconnect()}}catch(error){}}
     function clickSpoke(now,reduced){if(!reduced)pointer.animate([{transform:'translateX(-50%) rotate(-15deg)'},{transform:'translateX(-50%) rotate(0deg)'}],{duration:85,easing:'ease-out'});if(now-lastClick>28){tone(1250,.025,.045,'triangle');lastClick=now}}
     function renderRotation(value){wheel.style.transform='rotate('+value+'deg)';wheel.querySelectorAll('.wheel-label').forEach(label=>label.style.setProperty('--turn',-value+'deg'))}
-    function showResult(task){document.getElementById('art').innerHTML=task.art;document.getElementById('task').textContent=task.name.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());document.getElementById('directions').textContent=task.directions;document.getElementById('partner').textContent=task.partner;document.getElementById('ready').hidden=true;result.hidden=false;spinning=false;button.disabled=false;button.textContent='🎡 SPIN AGAIN';tone(523.25,.25,.07);tone(659.25,.3,.07,'sine',.12);tone(783.99,.45,.07,'sine',.24)}
-    button.addEventListener('click',()=>{if(spinning)return;spinning=true;initAudio();button.disabled=true;button.textContent='🎡 SPINNING…';result.hidden=true;document.getElementById('ready').hidden=false;
+    function finishAccent(task){document.querySelectorAll('.wheel-label').forEach(label=>label.classList.remove('selected'));const names={315:'backpack',45:'binder',135:'chromebook',225:'planner'};document.querySelector('.wheel-label.'+names[task.angle]).classList.add('selected');if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;result.animate([{opacity:.3,transform:'translateY(10px)'},{opacity:1,transform:'translateY(0)'}],{duration:350,easing:'ease-out'});const stage=document.querySelector('.wheel-stage');for(let i=0;i<7;i++){const mark=document.createElement('span');mark.className='landing-mark';mark.setAttribute('aria-hidden','true');stage.append(mark);const a=(i-3)*.38;mark.animate([{transform:'translate(-50%,0) rotate('+i*25+'deg)',opacity:1},{transform:'translate('+(-2+Math.sin(a)*75)+'px,'+(-25-Math.cos(a)*30)+'px) rotate('+i*25+'deg)',opacity:0}],{duration:600,easing:'ease-out'});setTimeout(()=>mark.remove(),650)}}
+    function showResult(task){document.getElementById('art').innerHTML=task.art;document.getElementById('task').textContent=task.name.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());document.getElementById('directions').textContent=task.directions;document.getElementById('partner').textContent=task.partner;document.getElementById('ready').hidden=true;result.hidden=false;finishAccent(task);spinning=false;button.disabled=false;button.textContent='SPIN AGAIN';tone(523.25,.25,.07);tone(659.25,.3,.07,'sine',.12);tone(783.99,.45,.07,'sine',.24)}
+    button.addEventListener('click',()=>{if(spinning)return;document.querySelectorAll('.wheel-label').forEach(label=>label.classList.remove('selected'));spinning=true;initAudio();button.disabled=true;button.textContent='SPINNING…';result.hidden=true;document.getElementById('ready').hidden=false;
       const task=tasks[Math.floor(Math.random()*tasks.length)],turns=20+Math.floor(Math.random()*5),from=rotation,target=(360-task.angle)%360,to=from+turns*360+((target-from%360+360)%360),reduced=matchMedia('(prefers-reduced-motion: reduce)').matches,duration=reduced?200:10000,start=performance.now();let lastSpoke=Math.floor(from/15);
       function frame(now){const progress=Math.min(1,(now-start)/duration),ease=1-Math.pow(1-progress,4),value=from+(to-from)*ease;renderRotation(value);const spoke=Math.floor(value/15);if(spoke!==lastSpoke){if(!reduced)clickSpoke(now,false);lastSpoke=spoke}if(progress<1){requestAnimationFrame(frame)}else{rotation=to;renderRotation(rotation);showResult(task)}}
       requestAnimationFrame(frame);
@@ -127,4 +158,5 @@
   </script>
 </body>
 </html>
+
 
